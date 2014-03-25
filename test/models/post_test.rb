@@ -1,7 +1,9 @@
-require 'test_helper'
+require 'spec_helper'
 
-class PostTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+describe Post do
+ it 'should belong to a user'
+ it 'requires a user'
+ it 'requires a body'
+ it 'does not allow a body to be more than 280 characters'
+ it 'has many comments'
 end
