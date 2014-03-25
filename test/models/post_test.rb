@@ -35,7 +35,7 @@ describe Post do
   end
 
   it 'does not allow a body to be more than 280 characters' do
-   post.body = 'a' * 501
+   post.body = 'a' * 281
    expect(post).to_not be_valid
    expect(post.errors[:body]).to include("is too long (maximum is 500 characters)")
   end
