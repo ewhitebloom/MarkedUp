@@ -24,6 +24,16 @@ describe Post do
     expect(post.errors[:body]).to include("can't be blank")
   end
 
+  it 'is geocoded' do
+    post.latitude = nil
+    post.longitude = nil
+    expect(post).to_not be_valid
+    expect(post.errors[:body]).to include("can't be blank")
+    post.address = nil
+    expect(post).to_not be_valid
+    expect(post.errors[:body]).to include("can't be blank")
+  end
+
   it 'does not allow a body to be more than 280 characters' do
    post.body = 'a' * 501
    expect(post).to_not be_valid
