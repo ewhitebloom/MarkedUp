@@ -23,4 +23,20 @@ describe User do
     user.email = 'hello@'
     expect(user).to_not be_valid
   end
+
+  it 'should have a valid address' do
+    expect(user).to be_valid
+    user.address = '123 somerville st.'
+    expect(user).to_not be_valid
+    user.address = '123 somerville, ma'
+    expect(user).to_not be_valid
+  end
+
+  it 'should have a valid password' do
+    expect(user).to be_valid
+    user.password = 'a'
+    expect(user).to_not be_valid
+    user.password = '13a'
+    expect(user).to_not be_valid
+  end
 end
