@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Comment do
-  let(:user){User.create(first_name: 'Bill', last_name: 'Bob', email: 'test@test.com', address: '123 Candy Lane, Somerville, MA 02145')}
-  let(:post){Post.create(body: 'hello', user: user)}
-  let(:comment){Comment.new(body: 'comment', user: user, post: post)}
+  let(:user){ User.create(first_name: 'Bill', last_name: 'Bob', email: 'test@test.com', address: '123 Candy Lane, Somerville, MA 02145') }
+  let(:post){ Post.create(body: 'hello', user: user) }
+  let(:comment){ Comment.new(body: 'comment', user: user, post: post) }
 
   it 'should belong to a user' do
     expect(comment).to respond_to(:user)

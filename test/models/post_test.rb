@@ -27,7 +27,7 @@ describe Post do
   it 'has many comments' do
    post.save!
    expect(post).to respond_to(:comments)
-   comment = Comment.create(user: user, body: 'hello', post:post)
+   comment = Comment.create(user: user, body: 'hello', post: post)
    expect(post.comments).to include(comment)
   end
 
