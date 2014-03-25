@@ -18,6 +18,12 @@ describe Post do
     expect(post.errors[:body]).to include("can't be blank")
   end
 
+  it 'requires a category' do
+    post.category = nil
+    expect(post).to_not be_valid
+    expect(post.errors[:body]).to include("can't be blank")
+  end
+
   it 'does not allow a body to be more than 280 characters' do
    post.body = 'a' * 501
    expect(post).to_not be_valid
