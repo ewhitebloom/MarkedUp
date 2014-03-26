@@ -34,10 +34,10 @@ describe Post do
     expect(post.errors[:body]).to include("can't be blank")
   end
 
-  it 'does not allow a body to be more than 280 characters' do
-   post.body = 'a' * 281
+  it 'does not allow a body to be more than 180 characters' do
+   post.body = 'a' * 181
    expect(post).to_not be_valid
-   expect(post.errors[:body]).to include("is too long (maximum is 500 characters)")
+   expect(post.errors[:body]).to include("is too long (maximum is 180 characters)")
   end
 
   it 'has many comments' do
