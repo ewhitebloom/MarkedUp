@@ -39,7 +39,7 @@ class UsersController < ApplicationController
    else
      render 'new'
    end
-  end
+ end
 
  def index
    @users = User.paginate(page: params[:page])
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   else
     render 'edit'
   end
- end
+end
 
 private
 
