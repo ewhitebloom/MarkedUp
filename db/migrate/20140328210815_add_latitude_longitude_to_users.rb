@@ -6,6 +6,6 @@ class AddLatitudeLongitudeToUsers < ActiveRecord::Migration
 
   def down
     remove_column :users, :latitude
-    remove_column :users, :latitude
+    remove_column :users, :longitude
   end
 end
