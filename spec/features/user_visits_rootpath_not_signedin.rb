@@ -13,8 +13,20 @@ feature "User visits the root path and isn't signed in (or signed up)" do
     expect(page).to have_content "Markdup is a "
   end
 
-  it 'can navigate to signup page'
-  it 'can signin'
-  it 'can signup'
+  it 'can navigate to signup page' do
+    click_on 'Signup'
+    expect(page).to have_content 'Signup'
+  end
+
+  it 'can signin' do
+    click_on 'Signin'
+  end
+
+  it 'can signup' do
+    visit '/users/new'
+    fill_in 'First', with: 'John'
+    fill_in 'Last', with: 'Smith'
+    fill_in 'Address', with: '123 Candy Lane, Somerville, MA 02145'
+  end
 
 end
