@@ -11,14 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325152107) do
+ActiveRecord::Schema.define(version: 20140328210815) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
+    t.integer  "post_id",    null: false
+    t.integer  "user_id",    null: false
+    t.string   "body",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "posts", force: true do |t|
+    t.string   "user_id",    null: false
+    t.string   "category",   null: false
+    t.string   "body",       null: false
+    t.string   "address",    null: false
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,9 +48,26 @@ ActiveRecord::Schema.define(version: 20140325152107) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address",                             null: false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "votes", force: true do |t|
+    t.boolean  "vote",          default: false, null: false
+    t.integer  "voteable_id",                   null: false
+    t.string   "voteable_type",                 null: false
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["voteable_id", "voteable_type"], name: "index_votes_on_voteable_id_and_voteable_type", using: :btree
+  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true, using: :btree
+  add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
 
 end
