@@ -7,7 +7,7 @@ describe Post do
   end
 
   it 'requires a user' do
-   post.user = nil
+   post.user_id = nil
    expect(post).to_not be_valid
    expect(post.errors[:user]).to include("can't be blank")
   end
