@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "User visits the root path, with the map and other features" do
+scenario "User visits the root path, with the map and other features" do
   # As a user visits the root path, he will see the map, and all associated features.
 
   it "sees a title" do
