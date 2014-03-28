@@ -31,5 +31,4 @@ feature "User visits the root path and isn't signed in (or signed up)" do
     click_on 'Submit'
     expect(User.count).to eql(count + 1)
   end
-
 end
