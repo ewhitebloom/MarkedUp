@@ -8,10 +8,19 @@ feature "User visits the root path, with the map and other features" do
     expect(page).to have_content "MarkdUp"
   end
 
-  it 'can navigate to about page'
-  it 'can navigate to users page'
+  it 'can navigate to about page' do
+    click_on "About"
+    expect(page).to have_content "Markdup is a "
+  end
+
+  it 'can navigate to users page' do
+    click_on "Users"
+    expect(page).to have_content "Users "
+  end
+
   it 'can navigate to profile page'
   it 'can navigate to signup page'
+
   within_frame 'id' do
 
     it 'can write a post' do
