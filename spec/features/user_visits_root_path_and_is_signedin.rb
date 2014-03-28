@@ -38,7 +38,7 @@ feature "User visits the root path, with the map and other features" do
 
       visit root_path
 
-      posts.each do |pokemon|
+      posts.each do |post|
         expect(page).to have_content post.category
         expect(page).to have_content post.body
       end
