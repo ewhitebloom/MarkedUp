@@ -9,6 +9,4 @@ feature "User visits the root path, with the map and other features" do
     expect(page).to have_content "MarkdUp"
   end
 
-  it "" do
-  end
 end
