@@ -2,6 +2,7 @@ require 'spec_helper'
 
 feature "User visits the root path, with the map and other features" do
   # As a user visits the root path, he will see the map, and all associated features.
+  let(:user){ User.create!(first_name: 'Bob', last_name: 'Bill', email: 'bob@bill.com', address: '123 Candy Lane, Somerville, MA 02145', password: 'hello', password_confirmation: 'hello')}
 
   it "sees a title" do
     visit root_path
@@ -15,10 +16,15 @@ feature "User visits the root path, with the map and other features" do
 
   it 'can navigate to users page' do
     click_on "Users"
-    expect(page).to have_content "Users "
   end
 
-  it 'can navigate to profile page'
+  it 'can navigate to profile page' do
+    click_on 'Profile'
+    expect(page).to have_content user.last_name
+    expect(page).to have_content user.first_name
+    expect(page).to have_content user.email
+    expect(page).to have_content user.address
+  end
   it 'can navigate to signup page'
 
   within_frame 'id' do
