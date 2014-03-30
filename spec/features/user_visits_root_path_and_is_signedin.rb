@@ -27,7 +27,7 @@ feature "User visits the root path, with the map and other features" do
   end
   it 'can navigate to signup page'
 
-  within_frame 'id' do
+  within_frame 'list_view' do
 
     it 'can write a post' do
       visit root_path
