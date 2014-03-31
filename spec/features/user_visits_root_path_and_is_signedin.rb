@@ -25,7 +25,10 @@ feature "User visits the root path, with the map and other features" do
     expect(page).to have_content user.email
     expect(page).to have_content user.address
   end
-  it 'can navigate to signup page'
+  it 'can navigate to signup page' do
+    click_on 'Signup'
+    expect(page).to have_content 'Signup'
+  end
 
   within_frame 'list_view' do
 
