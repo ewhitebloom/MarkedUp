@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Post do
-  let(:user){ User.create(first_name: 'Bill', last_name: 'Bob', email: 'test@test.com', address: '123 Candy Lane, Somerville, MA 02145') }
-  let(:post){ Post.create(body: 'hello', user: user) }
-  let(:comment){ Comment.create(body: 'comment', user: user, post: post) }
+  let(:user){ User.create!(first_name: 'Bill', last_name: 'Bob', email: 'test@test.com', address: '123 Candy Lane, Somerville, MA 02145') }
+  let(:post){ Post.create!(body: 'hello', user: user) }
+  let(:comment){ Comment.create!(body: 'comment', user: user, post: post) }
 
  it 'should belong to a user' do
    expect(post).to respond_to(:user)
@@ -46,7 +46,7 @@ end
 it 'has many comments' do
  post.save!
  expect(post).to have_many(:comments)
- comment = Comment.create(user: user, body: 'hello', post: post)
+ comment = Comment.create!(user: user, body: 'hello', post: post)
  expect(post.comments).to include(comment)
 end
 

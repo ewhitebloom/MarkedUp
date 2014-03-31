@@ -5,12 +5,12 @@ feature "User visits the root path and isn't signed in (or signed up)" do
 
   it "sees a title" do
     visit root_path
-    expect(page).to have_content "MarkdUp"
+    expect(page).to have_content "geosocial"
   end
 
   it 'can navigate to about page' do
     click_on "About"
-    expect(page).to have_content "Markdup is a "
+    expect(page).to have_content "Markdup is a geosocial network "
   end
 
   it 'can navigate to signup page' do
@@ -20,6 +20,7 @@ feature "User visits the root path and isn't signed in (or signed up)" do
 
   it 'can signin' do
     click_on 'Signin'
+    expect(page).to have_content 'Signin'
   end
 
   it 'can signup' do
