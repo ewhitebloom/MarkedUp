@@ -11,7 +11,7 @@ feature "User visits the root path, with the map and other features" do
 
   it 'can navigate to about page' do
     click_on "About"
-    expect(page).to have_content "Markdup is a "
+    expect(page).to have_content "Markdup is a geosocial network"
   end
 
   it 'can navigate to users page' do

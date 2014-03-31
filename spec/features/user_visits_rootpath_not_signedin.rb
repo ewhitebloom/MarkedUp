@@ -10,7 +10,7 @@ feature "User visits the root path and isn't signed in (or signed up)" do
 
   it 'can navigate to about page' do
     click_on "About"
-    expect(page).to have_content "Markdup is a geosocial network "
+    expect(page).to have_content "Markdup is a geosocial network"
   end
 
   it 'can navigate to signup page' do
