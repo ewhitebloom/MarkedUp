@@ -4,9 +4,6 @@ describe Comment do
   let(:comment){ FactoryGirl.create(:comment) }
 
   describe 'validations' do
-    it { should belong_to :user }
-
-    it { should belong_to :post }
 
     it 'should validate presence of user' do
       comment.user = nil
@@ -28,5 +25,8 @@ describe Comment do
   end
 
   describe 'associations' do
+
+    it { should belong_to :user }
+    it { should belong_to :post }
   end
 end

@@ -4,7 +4,6 @@ describe Post do
  let(:post){ FactoryGirl.create(:post) }
 
  describe 'validations' do
-   it { should belong_to :user}
 
    it 'requires a user' do
      post.user = nil
@@ -41,14 +40,11 @@ describe Post do
  end
 end
 
-describe 'assocations' do
+describe 'associations' do
 
-  it 'has many comments' do
-   post.save!
-   expect(post).to have_many(:comments)
-   comment = Comment.create!(user: user, body: 'hello', post: post)
-   expect(post.comments).to include(comment)
- end
+  it { should belong_to :user}
+  it { should have_many :comments }
+
 end
 
 end
