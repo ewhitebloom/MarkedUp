@@ -5,13 +5,17 @@ describe Post do
 
  describe 'validations' do
 
-   it 'requires a user' do
-     post.user = nil
-     expect(post).to_not be_valid
-     expect(post.errors[:user]).to include("can't be blank")
-   end
+  it 'creates successfully with all required attributes' do
+    expect(post).to be_valid
+  end
 
-   it 'requires a body' do
+  it 'requires a user' do
+    post.user = nil
+    expect(post).to_not be_valid
+    expect(post.errors[:user]).to include("can't be blank")
+  end
+
+  it 'requires a body' do
     post.body = nil
     expect(post).to_not be_valid
     expect(post.errors[:body]).to include("can't be blank")
@@ -37,14 +41,13 @@ describe Post do
    post.body = 'a' * 181
    expect(post).to_not be_valid
    expect(post.errors[:body]).to include("is too long (maximum is 180 characters)")
- end
+  end
 end
 
 describe 'associations' do
 
   it { should belong_to :user}
   it { should have_many :comments }
-
 end
 
 end
