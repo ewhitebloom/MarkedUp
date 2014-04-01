@@ -35,10 +35,18 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development, :test do
+group :test do
+  gem 'factory_girl'
+end
+
+group :test, :development do
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'pry-rails'
+  gem 'launchy'
+  gem 'valid_attribute'
+  gem 'shoulda-matchers'
   gem 'quiet_assets'
+  gem 'capybara'
 end
 
 # Use ActiveModel has_secure_password
