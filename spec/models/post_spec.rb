@@ -1,16 +1,12 @@
 require 'spec_helper'
 
 describe Post do
-  let(:user){ User.create!(first_name: 'Bill', last_name: 'Bob', email: 'test@test.com', address: '123 Candy Lane, Somerville, MA 02145') }
-  let(:post){ Post.create!(body: 'hello', user: user) }
-  let(:comment){ Comment.create!(body: 'comment', user: user, post: post) }
+ let(:post){ FactoryGirl.create(:post) }
 
- it 'should belong to a user' do
-   expect(post).to respond_to(:user)
- end
+ it { should belong_to :user}
 
  it 'requires a user' do
-   post.user_id = nil
+   post.user = nil
    expect(post).to_not be_valid
    expect(post.errors[:user]).to include("can't be blank")
  end
