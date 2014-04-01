@@ -14,13 +14,13 @@ feature "User visits the root path and isn't signed in (or signed up)" do
   end
 
   it 'can navigate to signup page' do
-    click_on 'Signup'
-    expect(page).to have_content 'Signup'
+    click_on 'Sign Up'
+    expect(page).to have_content 'Sign Up'
   end
 
   it 'can signin' do
-    click_on 'Signin'
-    expect(page).to have_content 'Signin'
+    click_on 'Sign In'
+    expect(page).to have_content 'Sign In'
   end
 
   it 'can signup' do
