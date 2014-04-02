@@ -6,5 +6,9 @@ FactoryGirl.define do
     first 'John'
     last 'Smith'
     address '123 Candy Lane Boston, MA 02145'
+
+    post
+    comment
+    vote
   end
 end
