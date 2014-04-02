@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :post do
-    body 'This is a post.'
     category 'News'
+    body 'This is a post.'
     latitude 34.2232311
     longitude -52.23322222
 
