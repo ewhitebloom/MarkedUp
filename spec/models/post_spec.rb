@@ -14,8 +14,12 @@ describe Post do
   it { should_not have_valid(:body).when(nil) }
   it { should have_valid(:body).when('asdfasdf','asdfasdf') }
 
+  it { should validate_presence_of(:body) }
+
   it { should_not have_valid(:category).when(nil) }
   it { should have_valid(:category).when('News','Transportation') }
+
+  it { should validate_presence_of(:category) }
 
   it { should_not have_valid(:latitude).when(nil) }
   it { should have_valid(:latitude).when(23.23321222,-43.33223332) }

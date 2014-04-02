@@ -9,6 +9,8 @@ describe Comment do
 
     it { should have_valid(:body).when('a body of a post', "even .mreo asdfasdf") }
     it { should_not have_valid(:body).when(nil, '') }
+
+    it { should validate_presence_of(:body) }
   end
 
   describe 'associations' do
