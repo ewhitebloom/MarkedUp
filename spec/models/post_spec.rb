@@ -3,51 +3,37 @@ require 'spec_helper'
 describe Post do
  let(:post){ FactoryGirl.create(:post) }
 
-   describe 'validations' do
+ describe 'validations' do
 
-    it 'creates successfully with all required attributes' do
-      expect(post).to be_valid
-    end
-
-    it 'requires a user' do
-      post.user = nil
-      expect(post).to_not be_valid
-      expect(post.errors[:user]).to include("can't be blank")
-    end
-
-    it 'requires a body' do
-      post.body = nil
-      expect(post).to_not be_valid
-      expect(post.errors[:body]).to include("can't be blank")
-    end
-
-    it 'requires a category' do
-      post.category = nil
-      expect(post).to_not be_valid
-      expect(post.errors[:body]).to include("can't be blank")
-    end
-
-    it 'is geocoded' do
-      post.latitude = nil
-      post.longitude = nil
-      expect(post).to_not be_valid
-      expect(post.errors[:body]).to include("can't be blank")
-      post.address = nil
-      expect(post).to_not be_valid
-      expect(post.errors[:body]).to include("can't be blank")
-    end
-
-    it 'does not allow a body to be more than 180 characters' do
-     post.body = 'a' * 181
-     expect(post).to_not be_valid
-     expect(post.errors[:body]).to include("is too long (maximum is 180 characters)")
-    end
+  it 'creates successfully with all required attributes' do
+    expect(post).to be_valid
   end
 
-  describe 'associations' do
+  it { should_not have_valid(:user).when(nil) }
 
-    it { should belong_to :user}
-    it { should have_many :comments }
-  end
+  it { should_not have_valid(:body).when(nil) }
+  it { should have_valid(:body).when('asdfasdf','asdfasdf') }
+
+  it { should_not have_valid(:category).when(nil) }
+  it { should have_valid(:category).when('News','Transportation') }
+
+  it { should_not have_valid(:latitude).when(nil) }
+  it { should have_valid(:latitude).when(23.23321222,-43.33223332) }
+
+  it { should_not have_valid(:longitude).when(nil) }
+  it { should have_valid(:longitude).when(43.2233222,-56.2333) }
+
+  it 'does not allow a body to be more than 180 characters' do
+   post.body = 'a' * 181
+   expect(post).to_not be_valid
+   expect(post.errors[:body]).to include("is too long (maximum is 180 characters)")
+ end
+end
+
+describe 'associations' do
+
+  it { should belong_to :user}
+  it { should have_many :comments }
+end
 
 end

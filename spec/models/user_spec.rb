@@ -3,15 +3,9 @@ require 'spec_helper'
 describe User do
   let(:user){ FactoryGirl.create(:user) }
 
-  describe 'validations' do
-    it 'should have a valid address' do
-      expect(user).to be_valid
-      user.address = '123 somerville st.'
-      expect(user).to_not be_valid
-      user.address = '123 somerville, ma'
-      expect(user).to_not be_valid
-    end
-  end
+  it { should have_valid(:address).when('123 Somerville St. Somerville, MA 02145', '123 Massachussetts Street, Boston, MA 02145') }
+  it { should_not have_valid(:address).when('123 somerville st.', '123 somerville, ma')}
+
 
   describe 'associations' do
     it { should have_many :posts }
