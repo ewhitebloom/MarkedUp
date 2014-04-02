@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Post do
  let(:post){ FactoryGirl.create(:post) }
 
- describe 'validations' do
+ describe 'Validations' do
 
   it 'creates successfully with all required attributes' do
     expect(post).to be_valid
@@ -34,7 +34,7 @@ describe Post do
  end
 end
 
-describe 'associations' do
+describe 'Assocations' do
 
   it { should belong_to :user}
   it { should have_many :comments }
