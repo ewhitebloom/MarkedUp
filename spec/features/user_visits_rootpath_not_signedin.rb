@@ -25,9 +25,10 @@ feature "User visits the root path and isn't signed in (or signed up)" do
 
   it 'can signup' do
     count = User.count
-    visit '/users/new'
+    click_on 'Sign Up'
     fill_in 'First', with: 'John'
     fill_in 'Last', with: 'Smith'
+    fill_in 'Email', with: 'johnsmith@gmail.com'
     fill_in 'Address', with: '123 Candy Lane, Somerville, MA 02145'
     click_on 'Submit'
     expect(User.count).to eql(count + 1)

@@ -1,38 +1,7 @@
 require 'spec_helper'
 
 feature "User visits the root path, with the map and other features" do
-  # As a user visits the root path, he will see the map, and all associated features.
-  let(:user){ User.create!(first_name: 'Bob', last_name: 'Bill', email: 'bob@bill.com', address: '123 Candy Lane, Somerville, MA 02145', password: 'hello', password_confirmation: 'hello')}
-
-  context 'navigation' do
-
-    it "sees a title" do
-      visit root_path
-      expect(page).to have_content "MarkdUp"
-    end
-
-    it 'can navigate to about page' do
-      click_on "About"
-      expect(page).to have_content "Markdup is a geosocial network"
-    end
-
-    it 'can navigate to users page' do
-      click_on "Users"
-      expect(page).to have_content user.username
-    end
-
-    it 'can navigate to profile page' do
-      click_on 'Profile'
-      expect(page).to have_content user.last_name
-      expect(page).to have_content user.first_name
-      expect(page).to have_content user.email
-      expect(page).to have_content user.address
-    end
-    it 'can navigate to signup page' do
-      click_on 'Signup'
-      expect(page).to have_content 'Signup'
-    end
-  end
+  # As a user visits the root path, he wants a list of posts, in order to make posts.
 
   context 'Post list view' do
 
@@ -44,6 +13,12 @@ feature "User visits the root path, with the map and other features" do
         fill_in 'Body', with: "some post content."
         fill_in 'Location', location: '123 Maple Lane, Boston, MA 02145'
         click_button "Submit"
+      end
+
+      it 'can vote up a post' do
+        post = FactoryGirl.create(:post)
+        vote = FactoryGirl.create(:vote)
+        expect(post.votes).to eql 1
       end
 
       scenario 'User sees all posts' do
