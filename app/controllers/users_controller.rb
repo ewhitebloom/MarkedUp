@@ -39,47 +39,48 @@ class UsersController < ApplicationController
    else
      render 'new'
    end
- end
+  end
 
- def index
+  def index
    @users = User.paginate(page: params[:page])
- end
+  end
 
- def edit
- end
+  def edit
+  end
 
- def update
+  def update
    @user = User.find(params[:id])
    if @user.update_attributes(params[:user])
     flash[:success] = "Profile updated"
     sign_in @user
     redirect_to @user
-  else
+   else
     render 'edit'
+   end
   end
-end
 
 private
 
-def signed_in_user
- unless signed_in?
-  store_location
-  redirect_to signin_path, notice: "Please sign in." unless signed_in?
+  def signed_in_user
+   unless signed_in?
+    store_location
+    redirect_to signin_path, notice: "Please sign in." unless signed_in?
+   end
+  end
+
+  def correct_user
+   @user = User.find(params[:id])
+   redirect_to(root_path) unless current_user?(@user)
+  end
+
+  def admin_user
+   redirect_to(root_path) unless current_user.admin?
+  end
+
+  def user_params
+    params.require(:user).permit( :name, :email, :password, :password_confirmation)
+  end
+
 end
 
-def correct_user
- @user = User.find(params[:id])
- redirect_to(root_path) unless current_user?(@user)
-end
 
-def admin_user
- redirect_to(root_path) unless current_user.admin?
-end
-
-def user_params
-  params.require(:user).permit( :name, :email, :password, :password_confirmation)
-end
-end
-end
-
-end
