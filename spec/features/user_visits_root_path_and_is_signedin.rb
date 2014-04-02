@@ -18,6 +18,7 @@ feature "User visits the root path, with the map and other features" do
 
     it 'can navigate to users page' do
       click_on "Users"
+      expect(page).to have_content user.username
     end
 
     it 'can navigate to profile page' do
