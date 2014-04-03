@@ -24,7 +24,7 @@ feature "User visits the list path inside of root path, enters general-area post
 
   it 'can vote up a post' do
     post = FactoryGirl.create(:post)
-    vote = FactoryGirl.create(:vote)
+    FactoryGirl.create(:vote)
     expect(post.votes).to eql 1
   end
 
