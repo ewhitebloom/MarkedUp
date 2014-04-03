@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "User visits the list page", %Q{
+feature "User visits the list page, votes up a post", %Q{
   As an authenticated user,
   I want to be able to vote up a post,
   So that I can show that it is relevant/good quality, to other users.
