@@ -20,9 +20,11 @@ feature "User visits users page, sees other users listed.", %Q{
   it 'should only see users within a certain radius of their address'
 
   it 'should only see users\' first and last name, address and email' do
+
     5.times do
       users = FactoryGirl.create(:user)
     end
+
     users.each do
       expect(page).to have_content user.first
       expect(page).to have_content user.last
