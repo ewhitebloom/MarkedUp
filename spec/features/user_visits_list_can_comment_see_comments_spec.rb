@@ -1,7 +1,14 @@
 require 'spec_helper'
 
-feature 'User can write and see other comments' do
-#As a user, I should also be able to comment on a post in the list view by clicking on a 'Comment' button. Clicking the button will also display other user comments, in addition to the comment form.
+feature 'Authenticated user can write and see other comments', %Q{
+   As a registered user,
+   I want to comment on a post,
+   so that I can give feedback to that post.
+} do
+
+  # Acceptance Criteria:
+  #  * I must be an authenticated user.
+  #  * I can click on the comments button below any post, to see a form for a new comment and also see other users' comments.
 
   it 'can post a comment for a given post'
   it 'can see other comments for a post'
