@@ -18,7 +18,9 @@ feature 'Authenticated user can write and see other comments', %Q{
   end
 
     it 'can post a comment for a given post' do
-
+      click_link 'Toggle Comments'
+      fill_in 'body', with: 'This is a comment.'
+      click_link 'Submit'
     end
 
     it 'can see other comments for a post'
