@@ -15,14 +15,13 @@ feature 'Authenticated user can write and see other comments', %Q{
     login(@user)
   end
 
-  within_frame 'list_view' do
+  within_frame('list_view'){
 
     it 'can post a comment for a given post' do
-      visit '/'
 
     end
 
     it 'can see other comments for a post'
-  end
+  }
 end
 
