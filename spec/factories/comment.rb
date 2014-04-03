@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :comment do
     body 'this is a comment on a post.'
 
-    post
-    user
+    association :post
+    association :user
   end
 end

@@ -5,8 +5,8 @@ FactoryGirl.define do
     latitude 34.2232311
     longitude (-52.23322222)
 
-    user
-    comment
-    vote
+    association :user
+    association :comment
+    association :vote
   end
 end

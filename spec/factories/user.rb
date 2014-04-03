@@ -7,8 +7,8 @@ FactoryGirl.define do
     last 'Smithson'
     address '123 Candy Lane Boston, MA 02145'
 
-    post
-    comment
-    vote
+    association :post
+    association :comment
+    association :vote
   end
 end

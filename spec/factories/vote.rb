@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :vote do
     vote true
 
-    user
-    post
+    association :user
+    association :post
   end
 end
