@@ -34,6 +34,7 @@ feature "User visits users page, sees other users listed.", %Q{
       expect(page).to have_content user.address
       expect(page).to have_content user.email
     end
+
   end
 
   it 'should not be able to see users page if not signed in' do
