@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'rubygems'
+require 'vcr'
 
 feature "User visits users page, sees other users listed.", %Q{
   As an registered, authenticated user,

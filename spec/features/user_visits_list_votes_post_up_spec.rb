@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'rubygems'
+require 'vcr'
 
 feature "User visits the list page, votes up a post", %Q{
   As an authenticated user,
@@ -11,7 +13,6 @@ feature "User visits the list page, votes up a post", %Q{
   #  * I can vote up any post, one time.
 
   before :each do
-    @post = FactoryGirl.create(:post)
     login(post.user)
   end
 

@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'rubygems'
+require 'vcr'
 
 describe Post do
  let(:post){ FactoryGirl.create(:post) }

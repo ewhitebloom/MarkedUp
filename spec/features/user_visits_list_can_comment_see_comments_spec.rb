@@ -25,7 +25,6 @@ feature 'Authenticated user can write and see other comments', %Q{
   end
 
   it 'can see other comments for a post' do
-    FactoryGirl.create(:post)
 
     5.times do
      @comments =  FactoryGirl.create(:comment)
