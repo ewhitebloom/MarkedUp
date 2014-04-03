@@ -11,9 +11,8 @@ feature "User visits the list page, votes up a post", %Q{
   #  * I can vote up any post, one time.
 
   before :each do
-    @user = FactoryGirl.create(:user)
     @post = FactoryGirl.create(:post)
-    login(@user)
+    login(post.user)
   end
 
   it 'can vote a post up' do

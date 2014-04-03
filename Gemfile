@@ -38,6 +38,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'vcr'
 end
 
 group :test, :development do
