@@ -10,10 +10,16 @@ feature 'Authenticated user can write and see other comments', %Q{
   #  * I must be an authenticated user.
   #  * I can click on the comments button below any post, to see a form for a new comment and also see other users' comments.
 
+  before :each do
+    @user = FactoryGirl.create(:user)
+    login(@user)
+  end
+
   within_frame 'list_view' do
 
     it 'can post a comment for a given post' do
       visit '/'
+
     end
 
     it 'can see other comments for a post'
