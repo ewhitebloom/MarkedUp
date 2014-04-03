@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :comment do
-    body 'this is a comment on a post.'
+    sequence(:body) { |n| "This is the #{n}th comment."}
 
     association :post
     association :user

@@ -15,6 +15,7 @@ feature 'Authenticated user can write and see other comments', %Q{
     login(@user)
     visit '/'
     within_frame 'list_view'
+    within_div 'first_post_div'
   end
 
   it 'can post a comment for a given post' do
@@ -23,6 +24,16 @@ feature 'Authenticated user can write and see other comments', %Q{
     click_link 'Submit'
   end
 
-  it 'can see other comments for a post'
+  it 'can see other comments for a post' do
+    FactoryGirl.create(:post)
+
+    5.times do
+     comments =  FactoryGirl.create(:comment)
+    end
+
+   comments.each do
+    expect(div).to have_content comment.body
+   end
+  end
 end
 
