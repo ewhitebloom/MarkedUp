@@ -1,6 +1,10 @@
 require 'spec_helper'
 
-feature "User visits the root path, and wants to navigate to other pages" do
+feature "User visits the root path, and wants to navigate to other pages", %Q{
+   As a registered user,
+   I want to navigate to other pages in the app,
+   so that I can access the content on those pages.
+} do
   let(:user){ FactoryGirl.create(:user)}
 
   it "sees a title" do
