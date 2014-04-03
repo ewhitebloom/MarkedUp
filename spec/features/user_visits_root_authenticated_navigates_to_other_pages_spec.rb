@@ -1,4 +1,5 @@
 require 'spec_helper'
+include Sign_In_Sign_Out
 
 feature "User visits the root path, and navigates to other pages", %Q{
    As a registered user,
@@ -15,7 +16,7 @@ feature "User visits the root path, and navigates to other pages", %Q{
 
   before :each do
     @user = FactoryGirl.create(:user)
-    login(@user)
+    sign_in_as(@user)
   end
 
   it 'sees the map' do

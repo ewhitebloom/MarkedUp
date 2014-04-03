@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'rubygems'
 require 'vcr'
+include Sign_In_Sign_Out
 
 feature "User visits the list page, votes up a post", %Q{
   As an authenticated user,
@@ -13,7 +14,7 @@ feature "User visits the list page, votes up a post", %Q{
   #  * I can vote up any post, one time.
 
   before :each do
-    login(post.user)
+    sign_in_as(post.user)
   end
 
   it 'can vote a post up' do

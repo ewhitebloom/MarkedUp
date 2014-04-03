@@ -1,4 +1,5 @@
 require 'spec_helper'
+include Sign_In_Sign_Out
 
 feature "User visits the list path inside of root path, enters general-area posts", %Q{
  As an authenticated user,
@@ -12,7 +13,7 @@ feature "User visits the list path inside of root path, enters general-area post
 
   before :each do
     @user = FactoryGirl.create(:user)
-    login(@user)
+    sign_in_as(@user)
   end
 
   it 'can write a post' do

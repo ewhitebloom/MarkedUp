@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'rubygems'
 require 'vcr'
+include Sign_In_Sign_Out
 
 feature "User visits users page, sees other users listed.", %Q{
   As an registered, authenticated user,
@@ -16,7 +17,7 @@ feature "User visits users page, sees other users listed.", %Q{
 
   before :each do
     @user = FactoryGirl.create(:user)
-    login(@user)
+    sign_in_as(@user)
   end
 
   it 'should only see users within a certain radius of their address'

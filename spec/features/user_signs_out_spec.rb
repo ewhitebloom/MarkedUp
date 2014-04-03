@@ -13,7 +13,7 @@ feature 'created user signs out', %Q{
 
   before :each do
     @user = FactoryGirl.create(:user)
-    login(@user)
+    sign_in_as(@user)
   end
 
   scenario 'attempts to sign out' do
