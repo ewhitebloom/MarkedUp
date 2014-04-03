@@ -40,6 +40,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'vcr'
   gem 'fakeweb'
+  gem 'capybara-mechanize'
 end
 
 group :test, :development do
