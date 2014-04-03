@@ -11,10 +11,15 @@ feature "User visits the root path, and navigates to other pages", %Q{
   #  * User can navigate to the users page
   #  * User can navigate to the profile page
   #  * User can navigate to the sign up page
+  #  * User can see the map
 
   before :each do
     @user = FactoryGirl.create(:user)
     login(@user)
+  end
+
+  it 'sees the map' do
+    expect(page).to have_div 'map'
   end
 
   it "sees a title" do
