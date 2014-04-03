@@ -13,15 +13,14 @@ feature 'Authenticated user can write and see other comments', %Q{
   before :each do
     @user = FactoryGirl.create(:user)
     login(@user)
+    visit '/'
+    within_frame 'list_view'
   end
-
-  within_frame('list_view'){
 
     it 'can post a comment for a given post' do
 
     end
 
     it 'can see other comments for a post'
-  }
 end
 
