@@ -5,7 +5,11 @@ feature "User visits the root path, and navigates to other pages", %Q{
    I want to navigate to other pages in the app,
    so that I can access the content on those pages.
 } do
-  let(:user){ FactoryGirl.create(:user)}
+
+  before :each do
+    @user = FactoryGirl.create(:user)
+    login(@user)
+  end
 
   it "sees a title" do
     visit root_path

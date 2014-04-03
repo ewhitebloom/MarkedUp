@@ -23,11 +23,6 @@ feature "User visits the root path and isn't signed in (or signed up)" do
     expect(page).to have_content "Markdup is a geosocial network"
   end
 
-  it 'can navigate to sign up page' do
-    click_on 'Sign Up'
-    expect(page).to have_content 'Sign Up'
-  end
-
   it 'can signin' do
     click_on 'Sign In'
     expect(page).to have_content 'Sign In'

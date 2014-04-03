@@ -10,6 +10,12 @@ feature 'created user signs out', %Q{
   #  * I only need to click the sign out button in order to sign out.
   #  * When I sign out I'm prompted with the sign in or sign up page.
 
+
+  before :each do
+    @user = FactoryGirl.create(:user)
+    login(@user)
+  end
+
   scenario 'attempts to sign out' do
     visit '/'
     click_on 'Sign Out'

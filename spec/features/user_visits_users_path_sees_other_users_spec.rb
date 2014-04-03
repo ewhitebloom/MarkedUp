@@ -1,8 +1,41 @@
 require 'spec_helper'
 
-feature "User visits users page, sees other users listed." do
-  # As a user, I should be able to see other users with an address within a certain mile radius of my address, so I can see who is in my local area on MarkedUp.
+feature "User visits users page, sees other users listed.", %Q{
+  As an registered, authenticated user,
+  I want to see other users with a certain mile radius of my address,
+  So that I can see other users on my neighborhood.
+   } do
 
-  it 'should be able to see other users'
+  # Acceptance criteria:
+  #    * I must be signed in
+  #    * I can see only other users whose address is within a certain mile radius of my address.
+  #    * I can see the user's first and last name, address and email.
+
+
+  before :each do
+    @user = FactoryGirl.create(:user)
+    login(@user)
+  end
+
+  it 'should only see users within a certain radius of their address'
+
+  it 'should only see users\' first and last name, address and email' do
+    5.times do
+      users = FactoryGirl.create(:user)
+    end
+   users.each do
+    expect(page).to have_content user.first
+    expect(page).to have_content user.last
+    expect(page).to have_content user.address
+    expect(page).to have_content user.email
+   end
+  end
+
+  it 'should not be able to see users page if not signed in' do
+    logout(@user)
+    visit '/'
+    expect(page).to_not have_link 'Users'
+  end
+
 
 end
