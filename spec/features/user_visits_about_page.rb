@@ -31,8 +31,9 @@ feature "User visits the about page", %Q{
 
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    click_button 'Sign In'
+    click_link 'Sign In'
 
-
+    click_link 'About'
+    expect(page).to have_content 'MarkdUp is a geo-social network.'
   end
 end
