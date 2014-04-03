@@ -17,12 +17,12 @@ feature 'Authenticated user can write and see other comments', %Q{
     within_frame 'list_view'
   end
 
-    it 'can post a comment for a given post' do
-      click_link 'Toggle Comments'
-      fill_in 'body', with: 'This is a comment.'
-      click_link 'Submit'
-    end
+  it 'can post a comment for a given post' do
+    click_link 'Toggle Comments'
+    fill_in 'body', with: 'This is a comment.'
+    click_link 'Submit'
+  end
 
-    it 'can see other comments for a post'
+  it 'can see other comments for a post'
 end
 
