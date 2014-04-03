@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "User visits the root path, and wants to navigate to other pages", %Q{
+feature "User visits the root path, and navigates to other pages", %Q{
    As a registered user,
    I want to navigate to other pages in the app,
    so that I can access the content on those pages.

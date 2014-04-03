@@ -12,7 +12,6 @@ feature 'user deletes a category', %Q{
   #    * From the categories screen, I must click "Delete" next to the appropriate category
 
 feature "User visits the root path and isn't signed in (or signed up)" do
-  # As a user visits the root path, he will see the map, and all associated features.
 
   it "sees a title" do
     visit root_path
