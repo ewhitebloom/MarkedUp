@@ -4,7 +4,7 @@ feature "User visits users page, sees other users listed.", %Q{
   As an registered, authenticated user,
   I want to see other users with a certain mile radius of my address,
   So that I can see other users on my neighborhood.
-   } do
+  } do
 
   # Acceptance criteria:
   #    * I must be signed in
@@ -23,12 +23,12 @@ feature "User visits users page, sees other users listed.", %Q{
     5.times do
       users = FactoryGirl.create(:user)
     end
-   users.each do
-    expect(page).to have_content user.first
-    expect(page).to have_content user.last
-    expect(page).to have_content user.address
-    expect(page).to have_content user.email
-   end
+    users.each do
+      expect(page).to have_content user.first
+      expect(page).to have_content user.last
+      expect(page).to have_content user.address
+      expect(page).to have_content user.email
+    end
   end
 
   it 'should not be able to see users page if not signed in' do
