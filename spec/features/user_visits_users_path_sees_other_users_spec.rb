@@ -6,5 +6,3 @@ feature "User visits the list page" do
   it 'should be able to see other users'
 
 end
-
-
