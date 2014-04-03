@@ -28,10 +28,10 @@ feature 'Authenticated user can write and see other comments', %Q{
     FactoryGirl.create(:post)
 
     5.times do
-     comments =  FactoryGirl.create(:comment)
+     @comments =  FactoryGirl.create(:comment)
     end
 
-   comments.each do
+   @comments.each do
     expect(div).to have_content comment.body
    end
   end
