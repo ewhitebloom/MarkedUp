@@ -12,7 +12,7 @@ feature 'Authenticated user can write and see other comments', %Q{
 
   before :each do
     @user = FactoryGirl.create(:user)
-    login(@user)
+    sign_in_as(@user)
     visit '/'
     within_frame 'list_view'
     within_div 'first_post_div'
