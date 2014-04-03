@@ -1,10 +1,12 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:email) { |n| "johnsmith#{n}@gmail.com"}
-    password 'macintosh'
-    password_confirmation 'macintosh'
-    first 'Barry'
-    last 'Smithson'
-    address '123 Candy Lane Boston, MA 02145'
-  end
+    VCR.use_cassette 'address/520 Medford Street Somerville, MA 02145 USA' do
+        sequence(:email) { |n| "johnsmith#{n}@gmail.com"}
+        password 'macintosh'
+        password_confirmation 'macintosh'
+        first 'Barry'
+        last 'Smithson'
+        address '520 Medford Street Somerville, MA 02145 USA'
+    end
+end
 end
