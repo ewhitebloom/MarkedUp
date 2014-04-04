@@ -1,5 +1,4 @@
 require 'spec_helper'
-include Sign_In_Sign_Out
 
 feature "User visits the root path, and navigates to other pages", %Q{
    As a registered user,

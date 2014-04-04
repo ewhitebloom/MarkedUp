@@ -1,7 +1,6 @@
 require 'spec_helper'
 require 'rubygems'
 require 'vcr'
-include Sign_In_Sign_Out
 
 feature "User visits the list page, votes up a post", %Q{
   As an authenticated user,
