@@ -1,5 +1,4 @@
 require 'spec_helper'
-include Sign_In_Sign_Out
 
 feature "User visits the list path inside of root path, enters general-area posts", %Q{
  As an authenticated user,
