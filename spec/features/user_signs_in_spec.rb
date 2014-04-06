@@ -19,7 +19,7 @@ feature 'created user signs in', %Q{
     fill_in 'Password', with: user.password
     click_on 'Sign in'
 
-    expect(page).to have_content "Welcome, #{user.first_name}!"
+    expect(page).to have_content "Hello, #{user.first}."
     expect(page).to have_link 'About'
     expect(page).to have_link 'Sign Out'
   end

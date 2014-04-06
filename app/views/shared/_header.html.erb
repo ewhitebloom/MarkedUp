@@ -1,8 +1,9 @@
 <% if signed_in? %>
 <ul>
+  <li><%= "Hello, " + current_user.first + "." %></li>
   <li><%= link_to "Home", root_path %></li>
   <li><%= link_to "About", about_path %></li>
-  <li><%= link_to "Sign Out", '/users/sign_out', method: "delete", remote: false %></li>
+  <li><%= link_to "Sign Out", '/users/sign_out', method: "delete" %></li>
 </ul>
 <% else %>
 <ul>
