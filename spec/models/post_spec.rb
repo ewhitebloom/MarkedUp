@@ -11,7 +11,7 @@ describe Post do
     expect(post).to be_valid
   end
 
-  it { should_not have_valid(:user).when(nil) }
+  it { should_not have_valid(:user_id).when(nil) }
 
   it { should_not have_valid(:body).when(nil) }
   it { should have_valid(:body).when('asdfasdf','asdfasdf') }
