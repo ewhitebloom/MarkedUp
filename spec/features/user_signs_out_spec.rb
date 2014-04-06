@@ -17,7 +17,7 @@ feature 'created user signs out', %Q{
   end
 
   scenario 'attempts to sign out' do
-    visit '/'
+    visit '/users/sign_out'
     click_on 'Sign Out'
 
     expect(page).to have_link 'Sign In'
