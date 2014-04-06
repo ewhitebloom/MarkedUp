@@ -1,6 +1,7 @@
 MarkedUp::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :posts
+  resources :users
   root to: 'pages#home'
 
   match '/about', to: 'pages#about', via: 'get'

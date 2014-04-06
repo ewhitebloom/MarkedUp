@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def address
@@ -21,42 +21,8 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User destroyed."
-    redirect_to users_path
-  end
-
-  def create
-   if signed_in?
-     sign_out
-   end
-   @user = User.new(params[:user])
-   if @user.save
-     sign_in @user
-     flash[:success] = "Welcome to MarkdUp!"
-     redirect_to root_path
-   else
-     render 'new'
-   end
-  end
-
   def index
-   @users = User.paginate(page: params[:page])
-  end
-
-  def edit
-  end
-
-  def update
-   @user = User.find(params[:id])
-   if @user.update_attributes(params[:user])
-    flash[:success] = "Profile updated"
-    sign_in @user
-    redirect_to @user
-   else
-    render 'edit'
-   end
+   @users = User.all
   end
 
 private

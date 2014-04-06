@@ -1,0 +1,10 @@
+<%= render 'shared/header' %>
+
+<h1><%= @user.first + ' ' + @user.last + "'s Profile" %></h1>
+
+<ul>
+ <li><%= @user.email %></li>
+ <li><%= @user.address %></li>
+</ul>
+
+<%= link_to "Edit Profile", edit_user_registration_path %>
