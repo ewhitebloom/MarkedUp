@@ -27,7 +27,7 @@ feature 'user registers', %Q{
     fill_in 'user_password_confirmation', with: 'apassword123'
     click_button 'Sign up'
 
-    expect(page).to have_content "Welcome to MarkdUp!"
+    expect(page).to have_content "Hello, George"
     expect(page).to have_link 'About'
     expect(page).to have_link 'Sign Out'
   end
