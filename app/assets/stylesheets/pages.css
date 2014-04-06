@@ -1,0 +1,10 @@
+.nav {
+  float:right;
+  margin-bottom: 10px;
+}
+
+.nav li {
+  list-style: none;
+  padding: 10px;
+  float: left;
+}

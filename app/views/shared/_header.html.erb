@@ -1,12 +1,12 @@
 <% if signed_in? %>
-<ul>
+<ul class = 'nav'>
   <li><%= "Hello, " + current_user.first + "." %></li>
   <li><%= link_to "Home", root_path %></li>
   <li><%= link_to "About", about_path %></li>
   <li><%= link_to "Sign Out", '/users/sign_out', method: "delete" %></li>
 </ul>
 <% else %>
-<ul>
+<ul class = 'nav'>
   <li><%= link_to "Home", root_path %></li>
   <li><%= link_to "About", about_path %></li>
   <li><%= link_to "Sign Up", '/users/sign_up' %></li>
