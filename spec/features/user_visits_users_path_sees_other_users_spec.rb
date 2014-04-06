@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'rubygems'
 require 'vcr'
+include AuthenticationHelper
 
 feature "User visits users page, sees other users listed.", %Q{
   As an registered, authenticated user,
@@ -37,7 +38,7 @@ feature "User visits users page, sees other users listed.", %Q{
   end
 
   it 'should not be able to see users page if not signed in' do
-    logout(@user)
+    sign_out(@user)
     visit '/'
     expect(page).to_not have_link 'Users'
   end

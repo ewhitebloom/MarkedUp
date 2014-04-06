@@ -19,7 +19,7 @@ feature "User visits the root path, and navigates to other pages", %Q{
   end
 
   it 'sees the map' do
-    expect(page).to have_frame 'map'
+    expect(page).to have_css('#map')
   end
 
   it "sees a title" do
