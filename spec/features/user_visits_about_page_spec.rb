@@ -20,7 +20,7 @@ feature "User visits the about page", %Q{
 
   it 'can navigate to the about page when not signed in' do
     visit '/about'
-    expect(page).to have_content 'MarkdUp is a geo-social network.'
+    expect(page).to have_content 'MarkdUp is a geo-social network'
   end
 
   it 'can navigate to the about page when signed in' do
@@ -34,6 +34,6 @@ feature "User visits the about page", %Q{
     click_link 'Sign In'
 
     click_link 'About'
-    expect(page).to have_content 'MarkdUp is a geo-social network.'
+    expect(page).to have_content 'MarkdUp is a geo-social network'
   end
 end
