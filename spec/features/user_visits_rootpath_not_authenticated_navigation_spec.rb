@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'user deletes a category', %Q{
+feature 'unauthenticated user navigation', %Q{
   As an unauthenticated user
   I want to be able to navigate to other pages
   So that I can see sample the app before registering.
@@ -18,14 +18,13 @@ feature 'user deletes a category', %Q{
       visit '/'
     end
 
-    it "sees a title" do
-      visit root_path
-      expect(page).to have_content "geosocial"
+    it 'sees a title' do
+      expect(page).to have_content 'geosocial'
     end
 
     it 'can navigate to about page' do
-      click_on "About"
-      expect(page).to have_content "Markdup is a geosocial network"
+      click_on 'About'
+      expect(page).to have_content 'Markdup is a geosocial network'
     end
 
     it 'can not see a users page' do
