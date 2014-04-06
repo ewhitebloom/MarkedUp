@@ -19,12 +19,12 @@ feature 'unauthenticated user navigation', %Q{
     end
 
     it 'sees a title' do
-      expect(page).to have_content 'geosocial'
+      expect(page).to have_content 'geo-social'
     end
 
     it 'can navigate to about page' do
       click_on 'About'
-      expect(page).to have_content 'Markdup is a geosocial network'
+      expect(page).to have_content 'MarkedUp is a geo-social network'
     end
 
     it 'can not see a users page' do
@@ -36,17 +36,20 @@ feature 'unauthenticated user navigation', %Q{
     end
 
     it 'can not see a list of posts page' do
-      expect(page).to_not have_frame 'list-view'
+      expect(page).to_not have_css('#list-view')
     end
 
     it 'can sign up' do
       count = User.count
+      user = FactoryGirl.build(:user)
       click_on 'Sign Up'
-      fill_in 'First', with: 'John'
-      fill_in 'Last', with: 'Smith'
-      fill_in 'Email', with: 'johnsmith@gmail.com'
-      fill_in 'Address', with: '123 Candy Lane, Somerville, MA 02145'
-      click_on 'Submit'
+      fill_in 'First', with: user.first
+      fill_in 'Last', with: user.last
+      fill_in 'Email', with: user.email
+      fill_in 'Address', with: user.address
+      fill_in 'Password', with: user.password
+      fill_in 'Password confirmation', with: user.password_confirmation
+      click_button 'Sign up'
       expect(User.count).to eql(count + 1)
     end
   end
