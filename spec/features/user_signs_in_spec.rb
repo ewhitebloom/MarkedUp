@@ -14,12 +14,10 @@ feature 'created user signs in', %Q{
   scenario 'supplies valid email and password' do
     user = FactoryGirl.create(:user)
 
-    visit '/'
-    click_on 'Sign In'
-
+    visit '/users/sign_in'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    click_button 'Sign In'
+    click_on 'Sign in'
 
     expect(page).to have_content "Welcome, #{user.first_name}!"
     expect(page).to have_link 'About'
@@ -27,14 +25,13 @@ feature 'created user signs in', %Q{
   end
 
   scenario 'supplies invalid email or password' do
-    visit '/'
-    click_on 'Sign In'
+    visit '/users/sign_in'
 
     fill_in 'user_email', with: 'someemail@example.com'
     fill_in 'user_password', with: 'some_password'
-    click_button 'Sign In'
+    click_on 'Sign in'
 
-    expect(page).to have_content 'Invalid email or password.'
+    expect(page).to have_content 'Forgot your password?'
     expect(page).to_not have_link 'Sign Out'
   end
 end
