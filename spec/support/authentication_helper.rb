@@ -1,14 +1,13 @@
 module AuthenticationHelper
   def sign_in_as(user)
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Sign In'
+    visit '/users/sign_in'
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: user.password
+    click_button 'Sign in'
   end
 
   def sign_out(user)
     visit destroy_user_session_path
-    click_on 'Sign Out'
   end
 
 end

@@ -1,4 +1,5 @@
 require 'spec_helper'
+include AuthenticationHelper
 
 feature 'created user signs out', %Q{
    As a registered user,
@@ -10,18 +11,13 @@ feature 'created user signs out', %Q{
   #  * I only need to click the sign out button in order to sign out.
   #  * When I sign out I'm prompted with the sign in or sign up page.
 
-
-  before :each do
+  scenario 'attempts to sign out' do
     @user = FactoryGirl.create(:user)
     sign_in_as(@user)
-  end
 
-  scenario 'attempts to sign out' do
-    visit '/users/sign_out'
-    click_on 'Sign Out'
+    click_link 'Sign Out'
 
     expect(page).to have_link 'Sign In'
     expect(page).to have_link 'Sign Up'
   end
-
 end
