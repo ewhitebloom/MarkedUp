@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
 
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :address]
-  before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: :destroy
-
   def show
     @user = current_user
   end
