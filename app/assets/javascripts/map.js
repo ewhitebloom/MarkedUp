@@ -1,6 +1,15 @@
-function initialize() {
+  function onMapClick(e) {
+    var popup = L.popup();
+    popup
+    .setLatLng(e.latlng)
+    .setContent("You clicked the map at " + e.latlng.toString())
+    .openOn(map);
+  };
 
-  $(document).ready(function() {
+  function retrievePosts() {
+  };
+
+  function initialize() {
 
     $.getJSON('/address.json', {}, function(location){
 
@@ -15,8 +24,10 @@ function initialize() {
 
       var marker = L.marker(coordinates).addTo(map);
 
+      retrievePosts();
+
+      onMapClick(e);
+
     });
 
-  });
-
-};
+  };
