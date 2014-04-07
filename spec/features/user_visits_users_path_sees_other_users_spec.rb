@@ -24,23 +24,23 @@ feature "User visits users page, sees other users listed.", %Q{
   it 'should only see users within a certain radius of their address'
 
   it 'should only see users\' first and last name, address and email' do
+    visit users_path
+
+    @users = []
 
     5.times do
-      @users = FactoryGirl.create(:user)
+     @users << FactoryGirl.create(:user)
     end
 
-    @users.each do
+    @users.each do |user|
       expect(page).to have_content user.first
       expect(page).to have_content user.last
       expect(page).to have_content user.address
-      expect(page).to have_content user.email
     end
-
   end
 
   it 'should not be able to see users page if not signed in' do
-    sign_out(@user)
-    visit '/'
+    click_on 'Sign Out'
     expect(page).to_not have_link 'Users'
   end
 end

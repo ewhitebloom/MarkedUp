@@ -22,6 +22,10 @@ feature "User visits the list path inside of root path, enters general-area post
     click_button "Submit"
   end
 
+  it 'can see list view' do
+    expect(page).to have_css('#listview')
+  end
+
   it 'can vote up a post' do
     post = FactoryGirl.create(:post)
     FactoryGirl.create(:vote)

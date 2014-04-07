@@ -6,7 +6,7 @@ module AuthenticationHelper
     click_button 'Sign in'
   end
 
-  def sign_out(user)
-    visit destroy_user_session_path
+  def sign_out
+    visit '/users/sign_out'
   end
 end
