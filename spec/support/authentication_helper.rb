@@ -9,5 +9,4 @@ module AuthenticationHelper
   def sign_out(user)
     visit destroy_user_session_path
   end
-
 end

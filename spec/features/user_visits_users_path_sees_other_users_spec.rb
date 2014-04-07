@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'rubygems'
 require 'vcr'
+
 include AuthenticationHelper
 
 feature "User visits users page, sees other users listed.", %Q{
@@ -42,6 +43,4 @@ feature "User visits users page, sees other users listed.", %Q{
     visit '/'
     expect(page).to_not have_link 'Users'
   end
-
-
 end

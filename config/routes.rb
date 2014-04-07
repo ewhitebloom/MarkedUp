@@ -5,6 +5,7 @@ MarkedUp::Application.routes.draw do
   root to: 'pages#home'
 
   match '/about', to: 'pages#about', via: 'get'
+  match '/address', to: 'users#address', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

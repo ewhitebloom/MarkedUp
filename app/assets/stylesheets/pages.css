@@ -13,5 +13,7 @@
 }
 
 #map {
-  height: 380px;
+  height: 400px;
+  width: 800px;
+  align-items: center;
 }
