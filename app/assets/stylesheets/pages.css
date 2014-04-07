@@ -10,10 +10,20 @@
 }
 
 .headline {
+  align-items: center;
+  margin: auto;
 }
 
 #map {
   height: 400px;
   width: 1000px;
-  align-items: center;
+  margin: auto;
+  align: center;
+}
+
+#listview {
+  position: absolute;
+  border-style: hidden;
+  float: right;
+  margin: auto;
 }
