@@ -1,0 +1,6 @@
+<%= simple_form_for @post do |f| %>
+  <%= f.input :category, collection: %w{ News Event Personal Parks/Public Works Entertainment Shops Restaurants Neighborhood Government Transportation Other}, required: true %>
+  <%= f.text :body, label: 'Write a post..', required: true %>
+  <%= f.hidden_field :user_id, value: "#{current_user.id}", required: true %>
+  <%= f.button :submit, 'Submit' %>
+<% end %>

@@ -6,6 +6,15 @@ class PostsController < ApplicationController
   end
 
   def create
+    @post = Post.build(params[:post])
+    if @post.save
+     respond_to do |format|
+       format.html { redirect_to(@post) }
+       format.json { render json: @post }
+     end
+    else
+      redirect_to root
+    end
   end
 
   def new
@@ -13,6 +22,12 @@ class PostsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:category, :body, :latitude, :longitude)
   end
 
 end

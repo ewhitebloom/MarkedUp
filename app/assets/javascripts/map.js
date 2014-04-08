@@ -17,16 +17,17 @@ function initializeMap() {
 
     retrievePosts();
 
-    map.on('click', onMapClick);
+    map.on('click', makePost);
 
   });
 };
 
-function onMapClick(e) {
+function makePost(e) {
   var popup = L.popup();
+  var postform;
   popup
   .setLatLng(e.latlng)
-  .setContent("You clicked the map at " + e.latlng.toString())
+  .setContent()
   .openOn(map);
 };
 
