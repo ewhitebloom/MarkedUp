@@ -13,7 +13,7 @@ function initialize() {
 
   $.getJSON('/address.json', {}, function(location){
 
-    var coordinates = [parseFloat(location[0]),parseFloat(location[1])];
+    var coordinates = [location[0],location[1]];
 
     var map = L.map('map').setView(coordinates, 14);
 
@@ -27,5 +27,6 @@ function initialize() {
     retrievePosts();
 
     map.on('click', onMapClick);
+
   });
 };

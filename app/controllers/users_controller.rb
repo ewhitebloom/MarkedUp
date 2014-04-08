@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def address
-    location = [current_user.latitude, current_user.longitude]
+    location = [current_user.latitude.to_f, current_user.longitude.to_f]
     respond_to do |format|
       format.html
       format.json { render json: location.as_json}
