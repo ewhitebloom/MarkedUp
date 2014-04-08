@@ -25,7 +25,7 @@ feature "User visits the list path inside of root path, enters general-area post
   end
 
   it 'submits an invalid post' do
-    visit '/posts/index'
+    visit '/posts'
     click_button 'Submit'
     expect(page).to have_content "can't be blank"
   end
