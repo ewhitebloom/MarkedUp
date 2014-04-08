@@ -15,11 +15,19 @@ feature "User visits the list path inside of root path, enters general-area post
     sign_in_as(@user)
   end
 
-  it 'can write a post' do
+  it 'submits a valid post' do
+    count = Post.count
     fill_in 'Category', with:' Transportation'
     fill_in 'Body', with: "some post content."
     fill_in 'Location', location: '123 Maple Lane, Boston, MA 02145'
     click_button "Submit"
+    expect(Post.count).to eql(count + 1)
+  end
+
+  it 'submits an invalid post' do
+    visit '/posts/index'
+    click_button 'Submit'
+    expect(page).to have_content "can't be blank"
   end
 
   it 'can see list view' do

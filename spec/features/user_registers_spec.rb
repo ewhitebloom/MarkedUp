@@ -32,45 +32,12 @@ feature 'user registers', %Q{
     expect(page).to have_link 'Sign Out'
   end
 
-  scenario 'supplies invalid email' do
+  scenario 'supplies invalid attributes' do
 
-    fill_in 'user_email', with: nil
-    fill_in 'user_address', with: '520 Medford Street Somerville, MA USA'
-    fill_in 'user_first', with: 'George'
-    fill_in 'user_last', with: 'Washington'
-    fill_in 'user_password', with: 'apassword123'
-    fill_in 'user_password_confirmation', with: 'apassword123'
     click_button 'Sign up'
 
     expect(page).to have_content 'Please review the problems below'
     expect(page).to_not have_link 'Sign Out'
   end
 
-  scenario 'supplies invalid password' do
-
-    fill_in 'user_email', with: 'barry@samuels.com'
-    fill_in 'user_address', with: '520 Medford Street Somerville, MA USA'
-    fill_in 'user_first', with: 'George'
-    fill_in 'user_last', with: 'Washington'
-    fill_in 'user_password', with: nil
-    fill_in 'user_password_confirmation', with: 'apassword123'
-    click_button 'Sign up'
-
-    expect(page).to have_content 'Please review the problems below'
-    expect(page).to_not have_link 'Sign Out'
-  end
-
-    scenario 'supplies no first or last name' do
-
-    fill_in 'user_email', with: 'barry@samuels.com'
-    fill_in 'user_address', with: '520 Medford Street Somerville, MA USA'
-    fill_in 'user_first', with: nil
-    fill_in 'user_last', with: nil
-    fill_in 'user_password', with: 'apassword123'
-    fill_in 'user_password_confirmation', with: 'apassword123'
-    click_button 'Sign up'
-
-    expect(page).to have_content 'Please review the problems below'
-    expect(page).to_not have_link 'Sign Out'
-  end
 end
