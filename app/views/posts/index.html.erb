@@ -1,14 +1,19 @@
 <h1>Posts in Your Area:</h1>
 
 <% @posts.each do |post| %>
-  <div class='postlist'>
-    <%= post.category %><br>
-    <%= post.body %><br>
-    <%= post.address %><br>
+<div class='postlist'>
+  <%= post.category %><br>
+  <%= post.body %><br>
+  <%= post.address %><br><br>
+  <button class= 'comment_toggle_button'>Toggle Comments</button>
+  <div class='commenttoggle'>
+    <p>Comments:</p>
     <% post.comments.each do |comment| %>
-      <%= comment.user %>
-      <%= comment.body %>
+    <%= "#{comment.user.first} " + "#{comment.user.last}" %><br>
+    <%= comment.body %><br>
     <% end %>
+    <% @post = post %>
     <%= render '/shared/commentform' %>
   </div>
+</div>
 <% end %>

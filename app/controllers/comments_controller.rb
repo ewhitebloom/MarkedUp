@@ -6,25 +6,19 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = comment.new(comment_params)
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
     if @comment.save
-     respond_to do |format|
-       format.html { redirect_to comments_path }
-       format.json { render json: @comment }
-     end
+       redirect_to posts_path
     else
-      render new_comment_path
+      render new_post_comment_path
     end
-  end
-
-  def new
-    @comment = comment.new
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :post_id)
   end
 
 end
