@@ -1,0 +1,6 @@
+<%= simple_form_for [@comment, @post] do |f| %>
+ <%= f.error_notification %>
+  <%= f.input :body, placeholder: 'Write a post..', as: :text, required: true %>
+  <%= f.hidden_field :user_id, value: "#{current_user.id}", required: true %>
+  <%= f.button :submit, 'Submit' %>
+<% end %>

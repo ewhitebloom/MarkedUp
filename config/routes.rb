@@ -1,6 +1,10 @@
 MarkedUp::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
-  resources :posts
+
+  resources :posts do
+    resources :comments
+  end
+
   resources :users
   root to: 'pages#home'
 

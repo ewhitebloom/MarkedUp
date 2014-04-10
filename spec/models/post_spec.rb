@@ -23,10 +23,8 @@ describe Post do
 
   it { should validate_presence_of(:category) }
 
-  it { should_not have_valid(:latitude).when(nil) }
   it { should have_valid(:latitude).when(23.23321222,-43.33223332) }
 
-  it { should_not have_valid(:longitude).when(nil) }
   it { should have_valid(:longitude).when(43.2233222,-56.2333) }
 
   it 'does not allow a body to be more than 180 characters' do

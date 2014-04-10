@@ -18,7 +18,7 @@ feature "User visits the list page, votes up a post", %Q{
   end
 
   it 'can vote a post up' do
-    visit '/list'
+    visit '/posts'
     click_on 'Vote Up'
     expect(vote.post).votes to_eql 1
   end
@@ -26,7 +26,7 @@ feature "User visits the list page, votes up a post", %Q{
   it 'can vote a post up only once' do
     FactoryGirl.create(:vote)
     expect(vote.post).votes to_eql 1
-    visit '/list'
+    visit '/posts'
     click_on 'Vote Up'
     expect(vote.post).to have_error_message('can only vote up post one time')
   end

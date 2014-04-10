@@ -5,5 +5,10 @@
     <%= post.category %><br>
     <%= post.body %><br>
     <%= post.address %><br>
+    <% post.comments.each do |comment| %>
+      <%= comment.user %>
+      <%= comment.body %>
+    <% end %>
+    <%= render '/shared/commentform' %>
   </div>
 <% end %>
