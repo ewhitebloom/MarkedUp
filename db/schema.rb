@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20140328205313) do
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "posts", force: true do |t|
     t.string   "user_id",    null: false
     t.string   "category",   null: false

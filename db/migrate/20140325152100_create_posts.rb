@@ -7,7 +7,6 @@ class CreatePosts < ActiveRecord::Migration
       t.string :address, null: false
       t.float :latitude
       t.float :longitude
-
       t.timestamps
     end
   end
