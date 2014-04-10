@@ -9,11 +9,13 @@
   <div class='commenttoggle'>
     <p>Comments:</p>
     <% post.comments.each do |comment| %>
-    <%= "#{comment.user.first} " + "#{comment.user.last}" %><br>
-    <%= comment.body %><br>
+      <%= "#{comment.user.first} " + "#{comment.user.last}" %><br>
+      <%= comment.body %><br><br>
     <% end %>
-    <% @post = post %>
-    <%= render '/shared/commentform' %>
+    <%= render partial: '/comments/form', locals: {
+      comment: post.comments.build
+    } %>
   </div>
 </div>
+<hr>
 <% end %>

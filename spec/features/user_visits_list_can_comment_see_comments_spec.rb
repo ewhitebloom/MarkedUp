@@ -13,32 +13,32 @@ feature 'Authenticated user can write and see other comments', %Q{
   before :each do
     @user = FactoryGirl.create(:user)
     sign_in_as(@user)
-    visit '/'
-    within_frame 'list_view'
-    within_div 'first_post_div'
+    visit '/posts'
   end
 
   it 'posts a valid comment' do
-    click_link 'Toggle Comments'
+    click_on 'Toggle Comments'
     fill_in 'body', with: 'This is a comment.'
     click_link 'Submit'
   end
 
   it 'posts an invalid comment' do
-    click_link 'Toggle Comments'
+    click_on 'Toggle Comments'
     click_link 'Submit'
     expect(page).to have_content "can't be blank"
   end
 
   it 'can see other comments for a post' do
+    post = FactoryGirl.create(:post)
 
     5.times do
-     @comments =  FactoryGirl.create(:comment)
+     Comment.create(user_id: post.user_id, post_id: post.id, body: 'another comment')
     end
 
-   @comments.each do
-    expect(div).to have_content comment.body
-   end
+    post.comments.each do |comment|
+     page.should have_css(".commenttoggle", :text => "#{comment.body}")
+    end
   end
+
 end
 
