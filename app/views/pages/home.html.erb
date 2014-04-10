@@ -1,8 +1,8 @@
 <%= render 'shared/header' %>
 
-<div class='headline grid_3'>
-  <h1>MarkedUp</h1>
-  <p>[geo-social]</p>
+<div class='headline row'>
+  <h1 class='large-4'>MarkedUp</h1>
+  <p class= 'small-3'>[geo-social]</p>
 </div>
 
 <div id='map' class='grid 12'>
@@ -11,7 +11,9 @@
 <iframe id='listview'>
 </iframe>
 
-
+<div id='mapform'>
+<%= render 'shared/mapform' %>
+</div>
 
 <% content_for 'extra_footer' do %>
 <script>
