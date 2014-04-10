@@ -14,7 +14,7 @@ class PostsController < ApplicationController
        format.json { render json: @post }
      end
     else
-      redirect_to new_post_path
+      render new_post_path
     end
   end
 

@@ -29,9 +29,7 @@ feature "User visits the list path inside of root path, enters general-area post
   it 'submits an invalid post' do
     visit '/posts/new'
     click_button 'Submit'
-    expect(page).to have_content "categorycan't be blank"
-    expect(page).to have_content "bodycan't be blank"
-    expect(page).to have_content "addresscan't be blank"
+    expect(page).to have_content "Please review the problems below"
   end
 
   it 'User sees all posts' do
