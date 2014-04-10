@@ -16,41 +16,36 @@ feature "User visits the list path inside of root path, enters general-area post
   end
 
   it 'submits a valid post' do
+    visit '/posts/new'
     count = Post.count
-    fill_in 'Category', with:' Transportation'
+    select 'News', from:' post_category'
     fill_in 'Body', with: "some post content."
-    fill_in 'Location', address: '123 Maple Lane, Boston, MA 02145'
+    fill_in 'Address', with: '123 Maple Lane, Boston, MA 02145'
     click_button "Submit"
+    expect(page).to have_content 'Successfully'
     expect(Post.count).to eql(count + 1)
   end
 
   it 'submits an invalid post' do
-    visit '/posts'
+    visit '/posts/new'
     click_button 'Submit'
-    expect(page).to have_content "can't be blank"
+    expect(page).to have_content "categorycan't be blank"
+    expect(page).to have_content "bodycan't be blank"
+    expect(page).to have_content "addresscan't be blank"
   end
 
-  it 'can see list view' do
-    expect(page).to have_css('#listview')
-  end
-
-  it 'can vote up a post' do
-    post = FactoryGirl.create(:post)
-    FactoryGirl.create(:vote)
-    expect(post.votes).to eql 1
-  end
-
-  scenario 'User sees all posts' do
-    post1 = Post.create!(category: 'Transportation', body: 'Leaf', location: '123 Maple Lane, Boston, MA 02145')
-    post2 = Post.create!(category: 'News', body: 'Electric', location: '123 Oak Lane, Somerville, MA 02145')
-    post3 = Post.create!(category: 'Neighborhood', body: 'Fire', location: '123 Mulberry Lane, Brookline, MA 02145')
+  it 'User sees all posts' do
+    post1 = Post.create!(category: 'Transportation', body: 'Leaf', address: '33 Harrison Avenue, Boston, MA', user_id: @user.id )
+    post2 = Post.create!(category: 'News', body: 'Electric', address: '6 Inman Street, Cambridge, MA', user_id: @user.id)
+    post3 = Post.create!(category: 'Neighborhood', body: 'Fire', address: '520 Medford Street Somerville, MA 02145', user_id: @user.id)
     posts = [post1, post2, post3]
 
-    visit root_path
+    visit '/posts'
 
     posts.each do |post|
       expect(page).to have_content post.category
       expect(page).to have_content post.body
+      expect(page).to have_content post.address
     end
   end
 end
