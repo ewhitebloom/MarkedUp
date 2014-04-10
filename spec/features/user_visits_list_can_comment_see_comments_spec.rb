@@ -11,33 +11,34 @@ feature 'Authenticated user can write and see other comments', %Q{
   #  * I can click on the comments button below any post, to see a form for a new comment and also see other users' comments.
 
   before :each do
-    @user = FactoryGirl.create(:user)
-    sign_in_as(@user)
+    @post = FactoryGirl.create(:post)
+    sign_in_as(@post.user)
     visit '/posts'
   end
 
   it 'posts a valid comment' do
     click_on 'Toggle Comments'
-    fill_in 'body', with: 'This is a comment.'
-    click_link 'Submit'
+    fill_in 'Body', with: 'This is a comment.'
+    click_on 'Submit'
+    expect(page).to have_content 'Posts in Your Area'
   end
 
   it 'posts an invalid comment' do
     click_on 'Toggle Comments'
-    click_link 'Submit'
+    click_on 'Submit'
     expect(page).to have_content "can't be blank"
   end
 
   it 'can see other comments for a post' do
-    post = FactoryGirl.create(:post)
+    Comment.create(user_id: @post.user_id, post_id: @post.id, body: 'comment 1')
+    Comment.create(user_id: @post.user_id, post_id: @post.id, body: 'comment 2')
+    Comment.create(user_id: @post.user_id, post_id: @post.id, body: 'comment 3')
+    visit '/posts'
+    click_on 'Toggle Comments'
 
-    5.times do
-     Comment.create(user_id: post.user_id, post_id: post.id, body: 'another comment')
-    end
-
-    post.comments.each do |comment|
-     page.should have_css(".commenttoggle", :text => "#{comment.body}")
-    end
+    expect(page).to have_content 'comment 1'
+    expect(page).to have_content 'comment 2'
+    expect(page).to have_content 'comment 3'
   end
 
 end
