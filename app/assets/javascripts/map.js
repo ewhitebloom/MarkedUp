@@ -24,10 +24,11 @@ function initializeMap() {
 
 function makePost(e) {
   var popup = L.popup();
-  var postform;
+  var form = document.getElementByID('mapform');
+
   popup
   .setLatLng(e.latlng)
-  .setContent()
+  .setContent(form)
   .openOn(map);
 };
 

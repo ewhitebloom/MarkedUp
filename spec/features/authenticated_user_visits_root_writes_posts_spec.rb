@@ -19,7 +19,7 @@ feature "User visits the list path inside of root path, enters general-area post
     count = Post.count
     fill_in 'Category', with:' Transportation'
     fill_in 'Body', with: "some post content."
-    fill_in 'Location', location: '123 Maple Lane, Boston, MA 02145'
+    fill_in 'Location', address: '123 Maple Lane, Boston, MA 02145'
     click_button "Submit"
     expect(Post.count).to eql(count + 1)
   end

@@ -21,13 +21,10 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def destroy
-  end
-
   private
 
   def post_params
-    params.require(:post).permit(:category, :body, :latitude, :longitude)
+    params.require(:post).permit(:category, :body, :address, :latitude, :longitude)
   end
 
 end
