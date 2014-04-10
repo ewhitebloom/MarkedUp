@@ -1,0 +1,42 @@
+.nav {
+  float:right;
+  margin-bottom: 10px;
+}
+
+.nav li {
+  list-style: none;
+  margin: 10px;
+  float: left;
+}
+
+.headline {
+  align-text: center;
+  margin: auto;
+}
+
+.center {
+  margin: auto;
+  align-text: center;
+}
+
+#map {
+  height: 430px;
+  width: 1000px;
+  margin: auto;
+  align: center;
+}
+
+.postlist {
+  margin-bottom: 8px;
+}
+
+#mapform {
+  display: none;
+}
+
+#listview {
+  position: absolute;
+  border-style: hidden;
+  float: right;
+  margin: auto;
+}

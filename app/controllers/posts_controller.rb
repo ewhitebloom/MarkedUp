@@ -6,14 +6,15 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.build(params[:post])
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
     if @post.save
      respond_to do |format|
-       format.html { redirect_to(@post) }
+       format.html { redirect_to posts_path }
        format.json { render json: @post }
      end
     else
-      redirect_to root
+      redirect_to new_post_path
     end
   end
 
@@ -24,7 +25,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:category, :body, :address, :latitude, :longitude)
+    params.require(:post).permit(:category, :body, :address)
   end
 
 end

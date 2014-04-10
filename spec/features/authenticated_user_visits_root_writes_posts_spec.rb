@@ -18,11 +18,11 @@ feature "User visits the list path inside of root path, enters general-area post
   it 'submits a valid post' do
     visit '/posts/new'
     count = Post.count
-    select 'News', from:' post_category'
+    select 'News', from:' Category'
+    fill_in 'Address', with: '33 Harrison Avenue Boston, MA'
     fill_in 'Body', with: "some post content."
-    fill_in 'Address', with: '123 Maple Lane, Boston, MA 02145'
     click_button "Submit"
-    expect(page).to have_content 'Successfully'
+    expect(page).to have_content 'Posts in Your Area'
     expect(Post.count).to eql(count + 1)
   end
 
