@@ -24,8 +24,8 @@ function initializeMap() {
 
 function makePost(e) {
   var popup = L.popup();
-  var form = document.getElementByID('mapform');
-
+  var form = document.getElementById('mapform');
+  $(form).show();
   popup
   .setLatLng(e.latlng)
   .setContent(form)
