@@ -2,6 +2,11 @@
 
 <% @posts.each do |post| %>
 <div class='postlist'>
+
+  <div class='post_user'>
+  <%= "#{post.user.first}:"  %>
+  </div>
+
   <div class='post_category'>
   <%= post.category %>
   </div>
