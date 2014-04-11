@@ -60,7 +60,8 @@ function retrievePosts() {
   $.getJSON('/posts.json', {}, function(data){
      $.each(data, function(i,item){
        var marker = L.marker([item.latitude, item.longitude]).addTo(map);
-       marker.bindPopup(item.category + item.body).openPopup();
+       var content = "<div class='post_category'>" + item.category + "</div>" + "<div class='post_body'>" + item.body + "</div>";
+       marker.bindPopup(content).openPopup();
     });
   });
 }
