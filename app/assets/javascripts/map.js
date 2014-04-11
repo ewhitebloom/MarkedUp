@@ -24,7 +24,6 @@ function initializeMap() {
 
 function makePost(e) {
   var $form = $('#mapform');
-  $form.show();
 
   var lat = e.latlng.lat;
   var lng = e.latlng.lng;
@@ -34,27 +33,30 @@ function makePost(e) {
     .setContent($form.html())
     .openOn(map);
 
-  $('#map').on('submit', 'form', function(event) {
-    event.preventDefault();
-    var $form = $(event.currentTarget);
-
-    var data = $form.serialize() + '&' +
-     $.param({ post: { latitude: lat, longitude: lng } } );
-     $.ajax({
-        type: "POST",
-        url: $form.attr('action'),
-        data: data,
-        dataType: 'json',
-        success: function(){
-          $form.prepend('Post Successful!').hide().fadeIn();
-          retrievePosts();
-        },
-        error: function(){
-          $form.prepend('Something went wrong. Try Again.').hide().fadeIn();
-        }
-      });
+  map.on('popupclose', function(event) {
+    $(this).unbind();
   });
-};
+
+  map.on( 'submit', 'form',  function(event) {
+      event.preventDefault();
+      var $form = $(event.currentTarget);
+      var data = $form.serialize() + '&' +
+       $.param({ post: { latitude: lat, longitude: lng } } );
+       $.ajax({
+          type: "POST",
+          url: $form.attr('action'),
+          data: data,
+          dataType: 'json',
+          success: function(){
+            $form.prepend('Post Successful!').hide().fadeIn();
+            retrievePosts();
+          },
+          error: function(){
+            $form.prepend('Something went wrong. Try Again.').hide().fadeIn();
+          }
+        });
+    });
+  };
 
 function retrievePosts() {
   $.getJSON('/posts.json', {}, function(data){
