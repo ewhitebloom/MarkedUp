@@ -1,4 +1,5 @@
 var map;
+var popup = L.popup({minWidth: 150 });
 
 function initializeMap() {
 
@@ -23,7 +24,6 @@ function initializeMap() {
 };
 
 function makePost(e) {
-  var popup = L.popup({minWidth: 150 });
   var form = document.getElementById('mapform');
   $(form).show();
   popup
