@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
+  respond_to :html, :json
+
   def index
     @posts = Post.all
     @comment = Comment.new
@@ -8,14 +10,17 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post.user = current_user
     if @post.save
-     respond_to do |format|
-       format.html { redirect_to posts_path }
-       format.json { render json: @post }
-     end
+      respond_to do |format|
+        format.html { redirect_to posts_path }
+        format.json { render json: @post }
+      end
     else
-      render new_post_path
+      respond_to do |format|
+        format.html { render new_post_path }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -26,7 +31,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:category, :body, :address)
+    params.require(:post).permit(:category, :body, :address, :latitude, :longitude)
   end
 
 end

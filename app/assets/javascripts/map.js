@@ -1,5 +1,5 @@
 var map;
-var popup = L.popup({minWidth: 150 });
+var popup = L.popup( { minWidth: 150 } );
 
 function initializeMap() {
 
@@ -19,17 +19,40 @@ function initializeMap() {
     retrievePosts();
 
     map.on('click', makePost);
-
   });
 };
 
 function makePost(e) {
-  var form = document.getElementById('mapform');
-  $(form).show();
+  var $form = $('#mapform');
+  $form.show();
+
+  var lat = e.latlng.lat;
+  var lng = e.latlng.lng;
+
   popup
-  .setLatLng(e.latlng)
-  .setContent(form)
-  .openOn(map);
+    .setLatLng(e.latlng)
+    .setContent($form.html())
+    .openOn(map);
+
+  $('#map').on('submit', 'form', function(event) {
+    event.preventDefault();
+    var $form = $(event.currentTarget);
+
+    var data = $form.serialize() + '&' +
+     $.param({ post: { latitude: lat, longitude: lng } } );
+     $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        data: data,
+        dataType: 'json',
+        success: function(){
+          $form.prepend('Post Successful!').hide().fadeIn();
+        },
+        error: function(){
+          $form.prepend('Something went wrong. Try Again.').hide().fadeIn();
+        }
+      });
+  });
 };
 
 function retrievePosts() {
