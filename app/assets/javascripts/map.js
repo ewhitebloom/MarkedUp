@@ -23,46 +23,45 @@ function initializeMap() {
 };
 
 function makePost(e) {
-  var $form = $('#mapform');
+  var $mapform = $('#mapform');
 
   var lat = e.latlng.lat;
   var lng = e.latlng.lng;
 
   popup
     .setLatLng(e.latlng)
-    .setContent($form.html())
+    .setContent($mapform.html())
     .openOn(map);
 
-  map.on('popupclose', function(event) {
-    $(this).unbind();
-  });
+  $('#map').unbind();
+  $('#map').on('submit', 'form', function(event) {
+    event.preventDefault();
 
-  map.on( 'submit', 'form',  function(event) {
-      event.preventDefault();
-      var $form = $(event.currentTarget);
-      var data = $form.serialize() + '&' +
-       $.param({ post: { latitude: lat, longitude: lng } } );
-       $.ajax({
-          type: "POST",
-          url: $form.attr('action'),
-          data: data,
-          dataType: 'json',
-          success: function(){
-            $form.prepend('Post Successful!').hide().fadeIn();
-            retrievePosts();
-          },
-          error: function(){
-            $form.prepend('Something went wrong. Try Again.').hide().fadeIn();
-          }
-        });
+    var $form = $(event.currentTarget);
+    var data = $form.serialize() + '&' +
+      $.param({ post: { latitude: lat, longitude: lng } } );
+
+    $.ajax({
+      type: $form.attr('method'),
+      url: $form.attr('action'),
+      data: data,
+      dataType: 'json',
+      success: function(){
+        $form.prepend('Post Successful!').hide().fadeIn();
+        // retrievePosts();
+      },
+      error: function(){
+        $form.prepend('Something went wrong. Try Again.').hide().fadeIn();
+      }
     });
-  };
+  });
+};
 
 function retrievePosts() {
   $.getJSON('/posts.json', {}, function(data){
-     $.each(data, function(i,item){
-       var marker = L.marker([item.latitude, item.longitude]).addTo(map);
-       var content = "<div class='post_category'>" + item.category + "</div>" + "<div class='post_body'>" + item.body + "</div>";
+     $.each(data, function(i,post){
+       var marker = L.marker([post.latitude, post.longitude]).addTo(map);
+       var content = "<div class='post_category'>" + post.category + "</div>" + "<div class='post_body'>" + post.body + "</div>";
        marker.bindPopup(content).openPopup();
     });
   });
