@@ -42,17 +42,22 @@
 
 #map {
   height: 430px;
-  width: 1000px;
+  width: 100%;
   margin: auto;
   align: center;
 }
 
 .postlist {
-  margin-bottom: 8px;
+  margin-bottom: 0.5em;
 }
 
 #mapform {
   display: none;
+}
+
+#toggle_post_list_view {
+  margin-top: 10px;
+  align: center;
 }
 
 #listview {
@@ -60,4 +65,5 @@
   border-style: hidden;
   float: right;
   margin: auto;
+  display: none;
 }
