@@ -6,6 +6,11 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @comment = Comment.new
+    location = Post.near([current_user.latitude, current_user.longitude],1)
+    respond_to do |format|
+      format.html { @posts = location }
+      format.json { render json: location.as_json(only: [:category, :body, :latitude, :longitude ])  }
+    end
   end
 
   def create

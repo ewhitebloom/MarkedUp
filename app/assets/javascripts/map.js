@@ -47,6 +47,7 @@ function makePost(e) {
         dataType: 'json',
         success: function(){
           $form.prepend('Post Successful!').hide().fadeIn();
+          retrievePosts();
         },
         error: function(){
           $form.prepend('Something went wrong. Try Again.').hide().fadeIn();
@@ -56,4 +57,10 @@ function makePost(e) {
 };
 
 function retrievePosts() {
-};
+  $.getJSON('/posts.json', {}, function(data){
+     $.each(data, function(i,item){
+       var marker = L.marker([item.latitude, item.longitude]).addTo(map);
+       marker.bindPopup(item.category + item.body).openPopup();
+    });
+  });
+}
