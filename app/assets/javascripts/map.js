@@ -34,6 +34,7 @@ function makePost(e) {
     .openOn(map);
 
   $('#map').unbind();
+
   $('#map').on('submit', 'form', function(event) {
     event.preventDefault();
 
@@ -48,13 +49,17 @@ function makePost(e) {
       dataType: 'json',
       success: function(){
         $form.prepend('Post Successful!').hide().fadeIn();
-        // retrievePosts();
+         retrievePosts();
       },
       error: function(){
         $form.prepend('Something went wrong. Try Again.').hide().fadeIn();
       }
     });
   });
+};
+
+function vote(){
+
 };
 
 function retrievePosts() {

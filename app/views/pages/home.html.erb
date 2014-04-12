@@ -8,17 +8,17 @@
 </div>
 
 <div class='row'>
- <div class="medium-12 small-centered columns text-center">
+  <div class="medium-12 small-centered columns text-center">
    <div id='map'>
    </div>
     <button id='toggle_post_list_view'>Posts View</button>
-    </div>
+  </div>
 </div>
 
 
 <div>
-<iframe id='listview' src='/posts'>
-</iframe>
+  <iframe id='listview' src='/posts'>
+  </iframe>
 </div>
 
 <div id='mapform'>
@@ -26,7 +26,7 @@
 </div>
 
 <% content_for 'extra_footer' do %>
-<script>
-  initializeMap();
-</script>
+  <script>
+    initializeMap();
+  </script>
 <% end %>
