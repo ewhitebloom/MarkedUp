@@ -14,7 +14,7 @@ function initializeMap() {
       maxZoom: 22
     }).addTo(map);
 
-    L.circle(coordinates, 1609.34).addTo(map);
+    L.circle(coordinates, 1609.34, {fill: false }).addTo(map);
 
     var currentLocation = L.icon({
     iconUrl: '/assets/currentlocation.png',
@@ -70,7 +70,7 @@ function retrievePosts() {
   $.getJSON('/posts.json', {}, function(data){
      $.each(data, function(i,post){
        var marker = L.marker([post.latitude, post.longitude]).addTo(map);
-       var content = "<div class='post_category'>" + post.category + "</div>" + "<div class='post_body'>" + post.body + "</div>";
+       var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>";
        marker.bindPopup(content).openPopup();
     });
   });
