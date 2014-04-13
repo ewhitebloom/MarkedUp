@@ -1,8 +1,9 @@
 <%=render 'shared/header' %>
 
-<ul class='grid_6 center users'>
-<%= 'Users in Your Area' %>
+<ul class='grid_6 text-center users'>
+<h1><%= 'Users in Your Area' %></h1>
   <% @users.each do |user| %>
     <li><%= user.first + ' ' + user.last + ' at ' + user.address  %></li>
+    <li></li>
   <% end %>
 </ul>

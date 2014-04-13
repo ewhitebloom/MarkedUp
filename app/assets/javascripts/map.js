@@ -14,7 +14,13 @@ function initializeMap() {
       maxZoom: 22
     }).addTo(map);
 
-    var marker = L.marker(coordinates).addTo(map);
+    L.circle(coordinates, 1609.34).addTo(map);
+
+    var currentLocation = L.icon({
+    iconUrl: '/assets/currentlocation.png',
+    });
+
+    var marker = L.marker(coordinates, {icon: currentLocation}).addTo(map);
 
     retrievePosts();
 
@@ -58,9 +64,7 @@ function makePost(e) {
   });
 };
 
-function vote(){
-
-};
+function vote(){};
 
 function retrievePosts() {
   $.getJSON('/posts.json', {}, function(data){

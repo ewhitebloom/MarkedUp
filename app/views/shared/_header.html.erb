@@ -1,11 +1,14 @@
 <nav class = 'top-bar' data-topbar>
-<% if signed_in? %>
+
 <ul class="title-area">
     <li class="name">
       <h1><%= link_to "MarkedUp", root_path %></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
   </ul>
+
+  <% if signed_in? %>
+
   <section class="top-bar-section">
   <ul class = 'right'>
     <li><%= link_to "Hello, #{current_user.first}.", '/users/' + current_user.id.to_s %></li>
@@ -18,7 +21,9 @@
      <li class="divider"></li>
     <li><%= link_to "Sign Out", '/users/sign_out', method: "delete" %></li>
   </ul>
+
   <% else %>
+
   <ul class = 'nav'>
     <li><%= link_to "About", about_path %></li>
     <li><%= link_to "Sign Up", '/users/sign_up' %></li>
