@@ -71,7 +71,7 @@ function retrievePosts() {
      $.each(data, function(i,post){
        var marker = L.marker([post.latitude, post.longitude]).addTo(map);
        var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>";
-       marker.bindPopup(content).openPopup();
+       marker.bindPopup(content);
     });
   });
 }
