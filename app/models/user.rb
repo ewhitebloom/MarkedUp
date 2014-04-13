@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
 
   geocoded_by :address
   after_validation :geocode
+
+  def full_name
+    self.first + ' ' + self.last
+  end
 end

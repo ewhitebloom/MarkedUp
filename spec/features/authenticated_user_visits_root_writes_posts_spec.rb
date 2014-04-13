@@ -33,9 +33,9 @@ feature "User visits the list path inside of root path, enters general-area post
   end
 
   it 'User sees all posts' do
-    post1 = Post.create!(category: 'Transportation', body: 'Leaf', address: '33 Harrison Avenue, Boston, MA', user_id: @user.id )
-    post2 = Post.create!(category: 'News', body: 'Electric', address: '6 Inman Street, Cambridge, MA', user_id: @user.id)
-    post3 = Post.create!(category: 'Neighborhood', body: 'Fire', address: '520 Medford Street Somerville, MA 02145', user_id: @user.id)
+    post1 = Post.create!(category: 'Transportation', body: 'Leaf', address: '515 Medford Street Somerville, MA 02145', user_id: @user.id )
+    post2 = Post.create!(category: 'News', body: 'Electric', address: '520 Medford Street Somerville, MA 02145', user_id: @user.id)
+    post3 = Post.create!(category: 'Neighborhood', body: 'Fire', address: '518 Medford Street Somerville, MA 02145', user_id: @user.id)
     posts = [post1, post2, post3]
 
     visit '/posts'

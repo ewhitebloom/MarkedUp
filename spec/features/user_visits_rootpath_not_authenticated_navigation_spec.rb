@@ -42,7 +42,11 @@ feature 'unauthenticated user navigation', %Q{
     it 'can sign up' do
       count = User.count
       user = FactoryGirl.build(:user)
-      click_on 'Sign Up'
+
+      within('.nav') do
+        click_on 'Sign Up'
+      end
+
       fill_in 'First', with: user.first
       fill_in 'Last', with: user.last
       fill_in 'Email', with: user.email

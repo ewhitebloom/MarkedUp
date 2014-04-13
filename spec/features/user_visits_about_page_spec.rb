@@ -27,7 +27,10 @@ feature "User visits the about page", %Q{
     user = FactoryGirl.create(:user)
 
     visit '/'
-    click_on 'Sign In'
+
+    within('nav') do
+      click_on 'Sign In'
+    end
 
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password

@@ -7,8 +7,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :address,            null: false, default: ""
       t.string :first,              null: false, default: ""
       t.string :last,               null: false, default: ""
-      t.string :latitude,                        default: ""
-      t.string :longitude,                       default: ""
+      t.float  :latitude,                        default: ""
+      t.float  :longitude,                       default: ""
 
       ## Recoverable
       t.string   :reset_password_token

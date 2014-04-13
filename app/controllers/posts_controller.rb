@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @posts = Post.all
     @comment = Comment.new
     location = Post.near([current_user.latitude, current_user.longitude],1)
     respond_to do |format|
