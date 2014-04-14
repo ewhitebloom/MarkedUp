@@ -75,7 +75,56 @@ function retrievePosts() {
          markerColor: 'red'
        });
 
-       var marker = L.marker([post.latitude, post.longitude], { icon:redMarker }).addTo(map);
+       var darkredMarker = L.AwesomeMarkers.icon({
+         markerColor: 'darkred'
+       });
+
+       var orangeMarker = L.AwesomeMarkers.icon({
+         markerColor: 'orange'
+       });
+
+       var greenMarker = L.AwesomeMarkers.icon({
+         markerColor: 'green'
+       });
+
+       var darkgreenMarker = L.AwesomeMarkers.icon({
+         markerColor: 'darkgreen'
+       });
+
+       var blueMarker = L.AwesomeMarkers.icon({
+         markerColor: 'blue'
+       });
+
+       var purpleMarker = L.AwesomeMarkers.icon({
+         markerColor: 'purple'
+       });
+
+       var darkpurpleMarker = L.AwesomeMarkers.icon({
+         markerColor: 'darkpurple'
+       });
+
+       var cadetblueMarker = L.AwesomeMarkers.icon({
+         markerColor: 'cadetblue'
+       });
+
+       var transportation = L.AwesomeMarkers.icon({
+         markerColor: 'darkred',
+         icon: 'fa-truck'
+       });
+
+       var government = L.AwesomeMarkers.icon({
+         markerColor: 'cadetblue',
+         icon: 'fa-flag'
+       });
+
+       var other = L.AwesomeMarkers.icon({
+         markerColor: 'darkpurple',
+         icon: 'fa-question-circle'
+       });
+
+       var marker_assign = { 'News': redMarker, 'Event': orangeMarker, 'Personal':purpleMarker, 'Parks/Public\ Works': darkgreenMarker, 'Entertainment': cadetblueMarker, 'Shops':darkpurpleMarker, 'Restaurants': blueMarker, 'Neighborhood': darkredMarker, 'Transportation': transportation, 'Government': government, 'Other': other }
+
+       var marker = L.marker([post.latitude, post.longitude], { icon: marker_assign[post.category] }).addTo(map);
 
        var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>";
        marker.bindPopup(content);
