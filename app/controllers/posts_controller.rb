@@ -5,10 +5,11 @@ class PostsController < ApplicationController
 
   def index
     @comment = Comment.new
-    location = Post.near([current_user.latitude, current_user.longitude],1)
+    nearby_posts = Post.near([current_user.latitude, current_user.longitude],1)
+    nearby_posts_json = map_json(nearby_posts)
     respond_to do |format|
       format.html { @posts = location }
-      format.json { render json: location.as_json(only: [:category, :body, :latitude, :longitude ])  }
+      format.json { render json: nearby_posts_json }
     end
   end
 

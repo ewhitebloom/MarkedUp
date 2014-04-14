@@ -8,11 +8,17 @@
 </div>
 
 <% if user_signed_in? %>
+
 <div class='row'>
-  <div class="medium-12 small-centered columns text-center">
+  <div class="medium-11 small-centered columns text-center">
    <div id='map'>
    </div>
     <button id='toggle_post_list_view'>Posts View</button>
+  </div>
+
+  <div class='medium-1 columns'>
+    <iframe id='listview' src='/posts'>
+    </iframe>
   </div>
 </div>
 
@@ -26,11 +32,6 @@
   </ul>
   </div>
 <% end %>
-
-<div>
-  <iframe id='listview' src='/posts'>
-  </iframe>
-</div>
 
 <div id='mapform'>
   <%= render 'shared/mapform' %>

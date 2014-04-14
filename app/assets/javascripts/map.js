@@ -114,19 +114,19 @@ function retrievePosts() {
 
        var government = L.AwesomeMarkers.icon({
          markerColor: 'cadetblue',
-         icon: 'fa-flag'
+         icon: 'flag'
        });
 
        var other = L.AwesomeMarkers.icon({
          markerColor: 'darkpurple',
-         icon: 'fa-question-circle'
+         icon: 'bookmark'
        });
 
        var marker_assign = { 'News': redMarker, 'Event': orangeMarker, 'Personal':purpleMarker, 'Parks/Public\ Works': darkgreenMarker, 'Entertainment': cadetblueMarker, 'Shops':darkpurpleMarker, 'Restaurants': blueMarker, 'Neighborhood': darkredMarker, 'Transportation': transportation, 'Government': government, 'Other': other }
 
        var marker = L.marker([post.latitude, post.longitude], { icon: marker_assign[post.category] }).addTo(map);
 
-       var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>";
+       var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>" + "<div class='post_votes'>" + post.count + "</div>";
        marker.bindPopup(content);
     });
   });

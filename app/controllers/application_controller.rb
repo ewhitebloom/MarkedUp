@@ -14,4 +14,12 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << [:first, :last, :address]
   end
+
+  def map_json(posts)
+    json_data = []
+    posts.each do |post|
+      json_data << post.as_json(only: [:category, :body, :latitude, :longitude]).merge(count: post.votes.count)
+    end
+    json_data
+  end
 end
