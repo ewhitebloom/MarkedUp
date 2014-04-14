@@ -70,7 +70,13 @@ function vote(){};
 function retrievePosts() {
   $.getJSON('/posts.json', {}, function(data){
      $.each(data, function(i,post){
-       var marker = L.marker([post.latitude, post.longitude]).addTo(map);
+
+       var redMarker = L.AwesomeMarkers.icon({
+         markerColor: 'red'
+       });
+
+       var marker = L.marker([post.latitude, post.longitude], { icon:redMarker }).addTo(map);
+
        var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>";
        marker.bindPopup(content);
     });

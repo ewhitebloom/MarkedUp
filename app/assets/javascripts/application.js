@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require leaflet
+//= require leaflet.awesome-markers
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
