@@ -14,7 +14,7 @@ function initializeMap() {
       maxZoom: 22
     }).addTo(map);
 
-    L.circle(coordinates, 1609.34, {fill: false }).addTo(map);
+    L.circle(coordinates, 1609.34, { fill: false }).addTo(map);
 
     var currentLocation = L.icon({
     iconUrl: '/assets/currentlocation.png',
@@ -56,6 +56,7 @@ function makePost(e) {
       success: function(){
         $form.prepend('Post Successful!').hide().fadeIn();
          retrievePosts();
+         map.closePopup();
       },
       error: function(){
         $form.prepend('Something went wrong. Try Again.').hide().fadeIn();
