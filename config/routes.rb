@@ -3,6 +3,7 @@ MarkedUp::Application.routes.draw do
 
   resources :posts do
     resources :comments
+    resources :votes
   end
 
   resources :users
@@ -10,6 +11,7 @@ MarkedUp::Application.routes.draw do
 
   match '/about', to: 'pages#about', via: 'get'
   match '/address', to: 'users#address', via: 'get'
+  match '/vote', to: 'posts#vote', via: 'post'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

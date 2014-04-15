@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     nearby_posts = Post.near([current_user.latitude, current_user.longitude],1)
     nearby_posts_json = map_json(nearby_posts)
     respond_to do |format|
-      format.html { @posts = location }
+      format.html { @posts = nearby_posts }
       format.json { render json: nearby_posts_json }
     end
   end
@@ -38,5 +38,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:category, :body, :address, :latitude, :longitude)
   end
-
 end

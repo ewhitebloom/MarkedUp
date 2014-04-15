@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def map_json(posts)
     json_data = []
     posts.each do |post|
-      json_data << post.as_json(only: [:category, :body, :latitude, :longitude]).merge(count: post.votes.count)
+      json_data << post.as_json(only: [:id,:category, :body, :latitude, :longitude]).merge(count: post.votes.count)
     end
     json_data
   end

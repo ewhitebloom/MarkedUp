@@ -17,10 +17,10 @@ function initializeMap() {
     L.circle(coordinates, 1609.34, { fill: false }).addTo(map);
 
     var currentLocation = L.icon({
-    iconUrl: '/assets/currentlocation.png',
+      iconUrl: '/assets/currentlocation.png',
     });
 
-    var marker = L.marker(coordinates, {icon: currentLocation}).addTo(map);
+    var marker = L.marker(coordinates, { icon: currentLocation }).addTo(map);
 
     retrievePosts();
 
@@ -45,6 +45,7 @@ function makePost(e) {
     event.preventDefault();
 
     var $form = $(event.currentTarget);
+
     var data = $form.serialize() + '&' +
       $.param({ post: { latitude: lat, longitude: lng } } );
 
@@ -65,7 +66,20 @@ function makePost(e) {
   });
 };
 
-function vote(){};
+function vote(post_id){
+  $.ajax({
+    type: 'POST',
+    dataType: 'json',
+    url: '/posts/' + post_id + '/votes.json',
+    success: function(){
+       retrievePosts();
+       map.closePopup();
+    },
+    error: function(){
+
+    }
+  });
+};
 
 function retrievePosts() {
   $.getJSON('/posts.json', {}, function(data){
@@ -126,7 +140,7 @@ function retrievePosts() {
 
        var marker = L.marker([post.latitude, post.longitude], { icon: marker_assign[post.category] }).addTo(map);
 
-       var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>" + "<div class='post_votes'>" + post.count + "</div>";
+       var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>" + "<div class='post_votes'>" + post.count + "</div>" + "<a href='#'  class='button vote_button tiny radius round'' onclick='vote(" + post.id + ");'>Vote</a>";
        marker.bindPopup(content);
     });
   });
