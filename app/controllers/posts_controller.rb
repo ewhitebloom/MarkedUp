@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @comment = Comment.new
+    @vote = Vote.new
     nearby_posts = Post.near([current_user.latitude, current_user.longitude],1)
     nearby_posts_json = map_json(nearby_posts)
     respond_to do |format|

@@ -4,14 +4,16 @@ class VotesController < ApplicationController
   respond_to :html, :json
 
   def create
-    @vote = Vote.new
-    @vote.voter = current_user
+    @vote = Vote.new(vote_params)
     @vote.vote = true
-    @vote.voteable = Post.find(params[:post_id])
     @vote.save
     respond_to do |format|
-      format.html { redirect_to '/list'}
+      format.html { redirect_to '/posts'}
       format.json { render json: @vote }
     end
+  end
+
+  def vote_params
+    { voter_id: current_user.id, voteable_id: params[:post_id], voteable_type: 'post' }
   end
 end
