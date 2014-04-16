@@ -19,6 +19,10 @@
     <%= post.address %>
   </div>
 
+  <div class='post_votes_count'>
+    <%= post.votes.count %>
+  </div>
+
   <button class= 'comment_toggle_button'>Toggle Comments</button>
   <div class='commenttoggle'>
     <% if post.comments.any? %>

@@ -10,13 +10,18 @@
 }
 
 .post_user {
-  margin-bottom: 5px;
+  margin-bottom: .75em;
   color: blue;
 }
 
 .post_votes {
   color: red;
   align-text: right;
+}
+
+.post_votes_count {
+  margin-bottom: .75em;
+  color: red;
 }
 
 .users {
@@ -35,16 +40,16 @@
 }
 
 .post_category {
-  margin-bottom: .15em;
+  margin-bottom: .75em;
   color: green;
 }
 
 .post_body {
-  margin-bottom: .15em;
+  margin-bottom: .75em;
 }
 
 .post_address {
-  margin-bottom: 5px;
+  margin-bottom: .75em;
 }
 
 .headline {
@@ -70,6 +75,8 @@
 
 .postlist {
   margin-bottom: 0.5em;
+  text-align: center;
+  float: left;
 }
 
 #mapform {
