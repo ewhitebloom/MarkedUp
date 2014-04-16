@@ -76,7 +76,7 @@ function vote(post_id){
        map.closePopup();
     },
     error: function(){
-      alert('Vote Up Failed. Please Try Again.');
+      alert('Vote Failed. Please Try Again.');
     }
   });
 };
