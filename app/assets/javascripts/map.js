@@ -140,7 +140,7 @@ function retrievePosts() {
 
        var marker = L.marker([post.latitude, post.longitude], { icon: marker_assign[post.category] }).addTo(map);
 
-       var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>" + "<div class='post_votes'>" + post.count + "</div>" + "<a href='#'  class='button tiny radius round'' onclick='vote(" + post.id + ");'>Vote</a>";
+       var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>" + "<div class='post_votes'>" + post.count + "</div>" + "<a href='#'  class='button tiny radius round vote-button' onclick='vote(" + post.id + ");'>Vote</a>";
        marker.bindPopup(content);
     });
   });
