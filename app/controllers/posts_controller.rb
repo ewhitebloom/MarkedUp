@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @comment = Comment.new
-    nearby_posts = Post.near([current_user.latitude, current_user.longitude],1)
+    nearby_posts = Post.near([current_user.latitude, current_user.longitude],1).order(created_at: :desc)
     nearby_posts_json = map_json(nearby_posts)
     respond_to do |format|
       format.html { @posts = nearby_posts }
