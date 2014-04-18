@@ -13,4 +13,9 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments
+
+  # def self.clean
+  #   if self.votes < 5 && Time.now -
+  #   end
+  # end
 end
