@@ -12,23 +12,25 @@ feature "User visits the list page, votes up a post", %Q{
   #  * I must be an authenticated user.
   #  * I can vote up any post, one time.
 
-  before :each do
+  it 'can vote a post up' do
     post = FactoryGirl.create(:post)
     sign_in_as(post.user)
-  end
-
-  it 'can vote a post up' do
     visit '/posts'
-    click_on 'Vote Up'
-    expect(vote.post).votes to_eql 1
+    click_on 'Toggle Comments'
+    click_on 'Vote'
+    expect(post.votes.count).to eql 1
   end
 
   it 'can vote a post up only once' do
-    FactoryGirl.create(:vote)
-    expect(vote.post).votes to_eql 1
+    post = FactoryGirl.create(:post)
+    sign_in_as(post.user)
     visit '/posts'
-    click_on 'Vote Up'
-    expect(vote.post).to have_error_message('can only vote up post one time')
+    click_on 'Toggle Comments'
+    click_on 'Vote'
+    expect(post.votes.count).to eql 1
+    click_on 'Toggle Comments'
+    click_on 'Vote'
+    expect(post.votes.count).to eql 1
   end
 
 end
