@@ -4,53 +4,10 @@
 
 <h1>Posts in Your Area:</h1>
 
-<% @posts.each do |post| %>
-  <div class='postlist'>
-
-    <div class='post_user'>
-      <%= "#{post.user.first}:"  %>
-    </div>
-
-    <div class='post_category'>
-      <%= post.category %>
-    </div>
-
-    <div class='post_body'>
-      <%= post.body %>
-    </div>
-
-    <div class='post_address'>
-      <%= post.address %>
-    </div>
-
-    <div class='post_votes_count'>
-      <%= post.votes.count %>
-    </div>
-
-    <% if current_user == post.user %>
-      <div class='delete_post'>
-        <%= link_to 'Delete Your Post', post_path(post.id), method: 'delete' %>
-      </div>
-    <% end %>
-
-    <button class= 'comment_toggle_button'>Toggle Comments</button>
-
-    <div class='commenttoggle'>
-
-    <%= button_to 'Vote', "/posts/#{post.id}/votes" %>
-
-    <% if post.comments.any? %>
-      <p>Comments:</p>
-        <% post.comments.each do |comment| %>
-          <%= "#{comment.user.first} " + "#{comment.user.last}" %><br>
-          <%= comment.body %><br><br>
-        <% end
-           end %>
-      <p>Add a Comment:</p>
-        <%= render partial: '/comments/form', locals: {
-          comment: post.comments.build
-        } %>
-    </div>
-  </div>
-  <hr>
+<%= form_tag posts_path, :method => 'get', :id => "posts_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search], placeholder: 'Search posts in your area' %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+  <div id="posts"><%= render 'posts' %></div>
 <% end %>

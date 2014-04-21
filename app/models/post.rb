@@ -14,6 +14,14 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
+  def self.search(search)
+    if search
+      where('body ILIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+
   # def self.clean
   #   if self.votes < 5 && Time.now -
   #   end
