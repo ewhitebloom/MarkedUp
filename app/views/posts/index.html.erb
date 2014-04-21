@@ -1,8 +1,12 @@
+<div class='postlist'>
+
 <h1>Write a General Area Post</h1>
 
 <%= render partial: 'new' %>
 
-<h1>Posts in Your Area:</h1>
+<hr>
+
+<h1 class='posts_index'>Posts in Your Area:</h1>
 
 <%= form_tag posts_path, :method => 'get', :id => "posts_search" do %>
   <p>
@@ -11,3 +15,5 @@
   </p>
   <div id="posts"><%= render 'posts' %></div>
 <% end %>
+
+</div>

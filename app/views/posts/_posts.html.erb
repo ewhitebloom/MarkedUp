@@ -31,7 +31,7 @@
 
     <div class='commenttoggle'>
 
-    <%= button_to 'Vote', "/posts/#{post.id}/votes" %>
+    <%= button_to 'Vote', "/posts/#{post.id}/votes", class: 'vote_button' %>
 
     <% if post.comments.any? %>
       <p>Comments:</p>
