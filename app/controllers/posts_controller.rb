@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   respond_to :html, :json
 
   def index
+    @post = Post.new
     @comment = Comment.new
     nearby_posts = Post.near([current_user.latitude, current_user.longitude],1).order(created_at: :desc)
     nearby_posts_json = map_json(nearby_posts)
@@ -27,10 +28,6 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def new
-    @post = Post.new
   end
 
   def destroy

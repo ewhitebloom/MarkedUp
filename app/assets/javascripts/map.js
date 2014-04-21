@@ -47,7 +47,7 @@ function makePost(e) {
     var $form = $(event.currentTarget);
 
     var data = $form.serialize() + '&' +
-      $.param({ post: { latitude: lat, longitude: lng } } );
+      $.param({ post: { latitude: lat, longitude: lng } });
 
     $.ajax({
       type: $form.attr('method'),
