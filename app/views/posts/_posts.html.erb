@@ -27,11 +27,11 @@
       </div>
     <% end %>
 
-    <button class= 'comment_toggle_button'>Toggle Comments</button>
+    <button class= 'comment_toggle_button small'>Toggle Comments</button>
 
     <div class='commenttoggle'>
 
-    <%= button_to 'Vote', "/posts/#{post.id}/votes", class: 'vote_button' %>
+    <%= button_to 'Vote', "/posts/#{post.id}/votes", class: 'vote_button button radius tiny' %>
 
     <% if post.comments.any? %>
       <p>Comments:</p>

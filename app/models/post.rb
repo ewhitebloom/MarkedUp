@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('body ILIKE ?', "%#{search}%")
+      where('body ILIKE ? OR address ILIKE ? OR category ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
     else
       scoped
     end
