@@ -18,12 +18,7 @@ class Post < ActiveRecord::Base
     if search
       where('body ILIKE ? OR address ILIKE ? OR category ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
     else
-      scoped
+      self.all
     end
   end
-
-  # def self.clean
-  #   if self.votes < 5 && Time.now -
-  #   end
-  # end
 end

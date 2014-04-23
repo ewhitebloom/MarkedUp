@@ -32,6 +32,9 @@ gem 'geocoder'
 gem 'thumbs_up'
 gem 'simple_form'
 
+gem 'sidetiq', '~> 0.4.3'
+gem 'sidekiq', '~> 2.15.0'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -41,7 +44,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'vcr'
   gem 'fakeweb'
-  gem 'capybara-mechanize'
 end
 
 group :test, :development do
@@ -52,6 +54,8 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'quiet_assets'
   gem 'capybara'
+  gem 'sinatra', require: false
+  gem 'slim'
 end
 
 # Use ActiveModel has_secure_password

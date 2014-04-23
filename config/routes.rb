@@ -1,4 +1,9 @@
+require 'sidekiq/web'
+
 MarkedUp::Application.routes.draw do
+
+  mount Sidekiq::Web, at: '/sidekiq'
+
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   resources :posts do

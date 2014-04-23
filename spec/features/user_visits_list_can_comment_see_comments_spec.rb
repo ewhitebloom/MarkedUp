@@ -18,14 +18,18 @@ feature 'Authenticated user can write and see other comments', %Q{
 
   it 'posts a valid comment' do
     click_on 'Toggle Comments'
-    fill_in 'Body', with: 'This is a comment.'
-    click_on 'Submit'
+    within('#posts') do
+      fill_in 'Body', with: 'This is a comment.'
+      click_on 'Submit'
+    end
     expect(page).to have_content 'Posts in Your Area'
   end
 
   it 'posts an invalid comment' do
-    click_on 'Toggle Comments'
-    click_on 'Submit'
+    within('#posts') do
+      click_on 'Toggle Comments'
+      click_on 'Submit'
+    end
     expect(page).to have_content "can't be blank"
   end
 
