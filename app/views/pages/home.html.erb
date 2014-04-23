@@ -1,45 +1,51 @@
-<%= render 'shared/header' %>
+<div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
 
-  <div class='row'>
-    <div class="medium-12 small-centered columns text-center">
-      <h1>MarkedUp</h1>
-      <p>[geo-social]</p>
+      <%= render 'shared/header' %>
+
+      <div class='row'>
+        <div class="medium-12 small-centered columns text-center">
+          <h1>MarkedUp</h1>
+          <p>[geo-social]</p>
+        </div>
+      </div>
+
+      <% if user_signed_in? %>
+
+      <div class='row'>
+        <div class="medium-12 small-centered columns text-center">
+         <div id='map'>
+         </div>
+       </div>
+      </div>
+
+      <aside class="right-off-canvas-menu">
+        <iframe id='listview' src='/posts'>
+        </iframe>
+      </aside>
+
+      <% else %>
+
+      <div class='medium-12 small-centered columns text-center prompt'>
+       <h2>Please Sign Up or Sign In:</h2>
+         <ul class='splash'>
+          <li><%= link_to 'Sign Up', '/users/sign_up' %></li>
+          <li><%= link_to 'Sign In', '/users/sign_in' %></li>
+        </ul>
+      </div>
+
+      <% end %>
+
+    <div id='mapform'>
+      <%= render 'shared/mapform' %>
     </div>
+
+    <% content_for 'extra_footer' do %>
+    <script>
+      initializeMap();
+    </script>
+    <% end %>
+
+    <a class="exit-off-canvas"></a>
   </div>
-
-<% if user_signed_in? %>
-
-  <div class='row'>
-    <div class="medium-11 small-centered columns text-center">
-     <div id='map'>
-     </div>
-      <button id='toggle_post_list_view'>Posts View</button>
-    </div>
-
-    <div class='medium-1 columns'>
-      <iframe id='listview' src='/posts'>
-      </iframe>
-    </div>
-  </div>
-
-<% else %>
-
-  <div class='medium-12 small-centered columns text-center prompt'>
-   <h2>Please Sign Up or Sign In:</h2>
-    <ul class='splash'>
-      <li><%= link_to 'Sign Up', '/users/sign_up' %></li>
-      <li><%= link_to 'Sign In', '/users/sign_in' %></li>
-    </ul>
-  </div>
-
-<% end %>
-
-<div id='mapform'>
-  <%= render 'shared/mapform' %>
 </div>
-
-<% content_for 'extra_footer' do %>
-  <script>
-    initializeMap();
-  </script>
-<% end %>

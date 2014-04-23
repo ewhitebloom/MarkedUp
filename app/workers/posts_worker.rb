@@ -1,5 +1,3 @@
-require 'sidekiq/exception_handler'
-
 class PostsWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
