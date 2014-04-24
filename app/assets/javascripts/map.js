@@ -84,8 +84,7 @@ function vote(post_id){
 
 function retrievePost(post_id) {
   $.getJSON('/posts/' + post_id + '.json', {}, function(data){
-    debugger;
-      makeMarker(data);
+    makeMarker(data);
   });
 };
 
@@ -152,8 +151,8 @@ function makeMarker(post){
 
 function retrievePosts() {
   $.getJSON('/posts.json', {}, function(data){
-     $.each(data, function(i,post){
-      makeMarker(post);
+    $.each(data, function(i,post){
+    makeMarker(post);
     });
   });
 }
