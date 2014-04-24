@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.near([current_user.latitude, current_user.longitude],1).find(params[:id])
     render json: @post.as_json(only: [:id,:category, :body, :address, :latitude, :longitude]).merge(count: @post.votes.count)
   end
 

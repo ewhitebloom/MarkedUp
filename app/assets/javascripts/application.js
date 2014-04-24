@@ -20,7 +20,7 @@
 $(function(){ $(document).foundation(); });
 
 $(function() {
-  $("#posts").live("click", function() {
+  $("#posts").on("click", function() {
     $.getScript(this.href);
     return false;
   });

@@ -56,8 +56,7 @@ function makePost(e) {
       dataType: 'json',
       success: function(response){
         $form.prepend('Post Successful!').hide().fadeIn();
-        response['count'] = 0;
-        makeMarker(response)
+        retrievePost(response.id)
         map.closePopup();
       },
       error: function(){
