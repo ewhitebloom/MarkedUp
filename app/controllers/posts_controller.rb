@@ -34,6 +34,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+    render json: @post.as_json(only: [:id,:category, :body, :address, :latitude, :longitude]).merge(count: @post.votes.count)
+  end
+
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy

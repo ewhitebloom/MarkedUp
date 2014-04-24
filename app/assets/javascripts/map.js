@@ -73,8 +73,8 @@ function vote(post_id){
     dataType: 'json',
     url: '/posts/' + post_id + '/votes.json',
     success: function(response){
-       retrievePosts();
-       map.closePopup();
+      retrievePost(post_id);
+      map.closePopup();
     },
     error: function(){
       alert('Vote Failed. Please Try Again.');
@@ -82,64 +82,72 @@ function vote(post_id){
   });
 };
 
-function makeMarker(post){
-var redMarker = L.AwesomeMarkers.icon({
-   markerColor: 'red'
+function retrievePost(post_id) {
+  $.getJSON('/posts/' + post_id + '.json', {}, function(data){
+    debugger;
+      makeMarker(data);
   });
+};
 
- var darkredMarker = L.AwesomeMarkers.icon({
-   markerColor: 'darkred'
- });
+function makeMarker(post){
+  var redMarker = L.AwesomeMarkers.icon({
+     markerColor: 'red'
+    });
 
- var orangeMarker = L.AwesomeMarkers.icon({
-   markerColor: 'orange'
- });
+   var darkredMarker = L.AwesomeMarkers.icon({
+     markerColor: 'darkred'
+   });
 
- var greenMarker = L.AwesomeMarkers.icon({
-   markerColor: 'green'
- });
+   var orangeMarker = L.AwesomeMarkers.icon({
+     markerColor: 'orange'
+   });
 
- var darkgreenMarker = L.AwesomeMarkers.icon({
-   markerColor: 'darkgreen'
- });
+   var greenMarker = L.AwesomeMarkers.icon({
+     markerColor: 'green'
+   });
 
- var blueMarker = L.AwesomeMarkers.icon({
-   markerColor: 'blue'
- });
+   var darkgreenMarker = L.AwesomeMarkers.icon({
+     markerColor: 'darkgreen'
+   });
 
- var purpleMarker = L.AwesomeMarkers.icon({
-   markerColor: 'purple'
- });
+   var blueMarker = L.AwesomeMarkers.icon({
+     markerColor: 'blue'
+   });
 
- var darkpurpleMarker = L.AwesomeMarkers.icon({
-   markerColor: 'darkpurple'
- });
+   var purpleMarker = L.AwesomeMarkers.icon({
+     markerColor: 'purple'
+   });
 
- var cadetblueMarker = L.AwesomeMarkers.icon({
-   markerColor: 'cadetblue'
- });
+   var darkpurpleMarker = L.AwesomeMarkers.icon({
+     markerColor: 'darkpurple'
+   });
 
- var transportation = L.AwesomeMarkers.icon({
-   markerColor: 'darkred',
-   icon: 'fa-truck'
- });
+   var cadetblueMarker = L.AwesomeMarkers.icon({
+     markerColor: 'cadetblue'
+   });
 
- var government = L.AwesomeMarkers.icon({
-   markerColor: 'cadetblue',
-   icon: 'flag'
- });
+   var transportation = L.AwesomeMarkers.icon({
+     markerColor: 'darkred',
+     icon: 'fa-truck'
+   });
 
- var other = L.AwesomeMarkers.icon({
-   markerColor: 'darkpurple',
-   icon: 'bookmark'
- });
+   var government = L.AwesomeMarkers.icon({
+     markerColor: 'cadetblue',
+     icon: 'flag'
+   });
 
- var marker_assign = { 'News': redMarker, 'Event': orangeMarker, 'Personal':purpleMarker, 'Parks/Public\ Works': darkgreenMarker, 'Entertainment': cadetblueMarker, 'Shops':darkpurpleMarker, 'Restaurants': blueMarker, 'Neighborhood': darkredMarker, 'Transportation': transportation, 'Government': government, 'Other': other }
+   var other = L.AwesomeMarkers.icon({
+     markerColor: 'darkpurple',
+     icon: 'bookmark'
+   });
 
- var marker = L.marker([post.latitude, post.longitude], { icon: marker_assign[post.category] }).addTo(map);
+   var marker_assign = { 'News': redMarker, 'Event': orangeMarker, 'Personal':purpleMarker, 'Parks/Public\ Works': darkgreenMarker, 'Entertainment': cadetblueMarker, 'Shops':darkpurpleMarker, 'Restaurants': blueMarker, 'Neighborhood': darkredMarker, 'Transportation': transportation, 'Government': government, 'Other': other }
 
- var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>" + "<div class='post_votes'>" + post.count + "</div>" + "<a href='#'  class='button tiny radius round vote-button' onclick='vote(" + post.id + ");'>Vote</a>";
- marker.bindPopup(content);
+   var marker = L.marker([post.latitude, post.longitude], { icon: marker_assign[post.category] }).addTo(map);
+
+   var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>" + "<div class='post_votes'>" + post.count + "</div>" + "<a href='#'  class='button tiny radius round vote-button' onclick='vote(" + post.id + ");'>Vote</a>";
+
+   marker.bindPopup(content);
 }
 
 function retrievePosts() {
