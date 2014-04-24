@@ -152,7 +152,7 @@ function makeMarker(post){
 function retrievePosts() {
   $.getJSON('/posts.json', {}, function(data){
     $.each(data, function(i,post){
-    makeMarker(post);
+      makeMarker(post);
     });
   });
 }
