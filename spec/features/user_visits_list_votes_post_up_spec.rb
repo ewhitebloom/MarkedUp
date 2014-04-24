@@ -16,7 +16,7 @@ feature "User visits the list page, votes up a post", %Q{
     post = FactoryGirl.create(:post)
     sign_in_as(post.user)
     visit '/posts'
-    click_on 'Toggle Comments'
+    click_on 'Comments'
     click_on 'Vote'
     expect(post.votes.count).to eql 1
   end
@@ -25,10 +25,10 @@ feature "User visits the list page, votes up a post", %Q{
     post = FactoryGirl.create(:post)
     sign_in_as(post.user)
     visit '/posts'
-    click_on 'Toggle Comments'
+    click_on 'Comments'
     click_on 'Vote'
     expect(post.votes.count).to eql 1
-    click_on 'Toggle Comments'
+    click_on 'Comments'
     click_on 'Vote'
     expect(post.votes.count).to eql 1
   end

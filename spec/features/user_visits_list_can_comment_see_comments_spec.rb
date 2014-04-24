@@ -17,7 +17,7 @@ feature 'Authenticated user can write and see other comments', %Q{
   end
 
   it 'posts a valid comment' do
-    click_on 'Toggle Comments'
+    click_on 'Comments'
     within('#posts') do
       fill_in 'Body', with: 'This is a comment.'
       click_on 'Submit'
@@ -27,7 +27,7 @@ feature 'Authenticated user can write and see other comments', %Q{
 
   it 'posts an invalid comment' do
     within('#posts') do
-      click_on 'Toggle Comments'
+      click_on 'Comments'
       click_on 'Submit'
     end
     expect(page).to have_content "can't be blank"
@@ -38,7 +38,7 @@ feature 'Authenticated user can write and see other comments', %Q{
     Comment.create(user_id: @post.user_id, post_id: @post.id, body: 'comment 2')
     Comment.create(user_id: @post.user_id, post_id: @post.id, body: 'comment 3')
     visit '/posts'
-    click_on 'Toggle Comments'
+    click_on 'Comments'
 
     expect(page).to have_content 'comment 1'
     expect(page).to have_content 'comment 2'

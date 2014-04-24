@@ -54,6 +54,7 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'quiet_assets'
   gem 'capybara'
+  gem 'capybara-mechanize'
   gem 'sinatra', require: false
   gem 'slim'
 end

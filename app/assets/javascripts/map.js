@@ -54,10 +54,11 @@ function makePost(e) {
       url: $form.attr('action'),
       data: data,
       dataType: 'json',
-      success: function(){
+      success: function(response){
         $form.prepend('Post Successful!').hide().fadeIn();
-         retrievePosts();
-         map.closePopup();
+        response['count'] = 0;
+        makeMarker(response)
+        map.closePopup();
       },
       error: function(){
         $form.prepend('Something went wrong. Try Again.').hide().fadeIn();
@@ -71,7 +72,7 @@ function vote(post_id){
     type: 'POST',
     dataType: 'json',
     url: '/posts/' + post_id + '/votes.json',
-    success: function(){
+    success: function(response){
        retrievePosts();
        map.closePopup();
     },
@@ -81,67 +82,70 @@ function vote(post_id){
   });
 };
 
+function makeMarker(post){
+var redMarker = L.AwesomeMarkers.icon({
+   markerColor: 'red'
+  });
+
+ var darkredMarker = L.AwesomeMarkers.icon({
+   markerColor: 'darkred'
+ });
+
+ var orangeMarker = L.AwesomeMarkers.icon({
+   markerColor: 'orange'
+ });
+
+ var greenMarker = L.AwesomeMarkers.icon({
+   markerColor: 'green'
+ });
+
+ var darkgreenMarker = L.AwesomeMarkers.icon({
+   markerColor: 'darkgreen'
+ });
+
+ var blueMarker = L.AwesomeMarkers.icon({
+   markerColor: 'blue'
+ });
+
+ var purpleMarker = L.AwesomeMarkers.icon({
+   markerColor: 'purple'
+ });
+
+ var darkpurpleMarker = L.AwesomeMarkers.icon({
+   markerColor: 'darkpurple'
+ });
+
+ var cadetblueMarker = L.AwesomeMarkers.icon({
+   markerColor: 'cadetblue'
+ });
+
+ var transportation = L.AwesomeMarkers.icon({
+   markerColor: 'darkred',
+   icon: 'fa-truck'
+ });
+
+ var government = L.AwesomeMarkers.icon({
+   markerColor: 'cadetblue',
+   icon: 'flag'
+ });
+
+ var other = L.AwesomeMarkers.icon({
+   markerColor: 'darkpurple',
+   icon: 'bookmark'
+ });
+
+ var marker_assign = { 'News': redMarker, 'Event': orangeMarker, 'Personal':purpleMarker, 'Parks/Public\ Works': darkgreenMarker, 'Entertainment': cadetblueMarker, 'Shops':darkpurpleMarker, 'Restaurants': blueMarker, 'Neighborhood': darkredMarker, 'Transportation': transportation, 'Government': government, 'Other': other }
+
+ var marker = L.marker([post.latitude, post.longitude], { icon: marker_assign[post.category] }).addTo(map);
+
+ var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>" + "<div class='post_votes'>" + post.count + "</div>" + "<a href='#'  class='button tiny radius round vote-button' onclick='vote(" + post.id + ");'>Vote</a>";
+ marker.bindPopup(content);
+}
+
 function retrievePosts() {
   $.getJSON('/posts.json', {}, function(data){
      $.each(data, function(i,post){
-
-       var redMarker = L.AwesomeMarkers.icon({
-         markerColor: 'red'
-       });
-
-       var darkredMarker = L.AwesomeMarkers.icon({
-         markerColor: 'darkred'
-       });
-
-       var orangeMarker = L.AwesomeMarkers.icon({
-         markerColor: 'orange'
-       });
-
-       var greenMarker = L.AwesomeMarkers.icon({
-         markerColor: 'green'
-       });
-
-       var darkgreenMarker = L.AwesomeMarkers.icon({
-         markerColor: 'darkgreen'
-       });
-
-       var blueMarker = L.AwesomeMarkers.icon({
-         markerColor: 'blue'
-       });
-
-       var purpleMarker = L.AwesomeMarkers.icon({
-         markerColor: 'purple'
-       });
-
-       var darkpurpleMarker = L.AwesomeMarkers.icon({
-         markerColor: 'darkpurple'
-       });
-
-       var cadetblueMarker = L.AwesomeMarkers.icon({
-         markerColor: 'cadetblue'
-       });
-
-       var transportation = L.AwesomeMarkers.icon({
-         markerColor: 'darkred',
-         icon: 'fa-truck'
-       });
-
-       var government = L.AwesomeMarkers.icon({
-         markerColor: 'cadetblue',
-         icon: 'flag'
-       });
-
-       var other = L.AwesomeMarkers.icon({
-         markerColor: 'darkpurple',
-         icon: 'bookmark'
-       });
-
-       var marker_assign = { 'News': redMarker, 'Event': orangeMarker, 'Personal':purpleMarker, 'Parks/Public\ Works': darkgreenMarker, 'Entertainment': cadetblueMarker, 'Shops':darkpurpleMarker, 'Restaurants': blueMarker, 'Neighborhood': darkredMarker, 'Transportation': transportation, 'Government': government, 'Other': other }
-
-       var marker = L.marker([post.latitude, post.longitude], { icon: marker_assign[post.category] }).addTo(map);
-
-       var content = "<div class='post_category'><strong>" + post.category + "</strong></div>" + "<div class='post_body'>" + post.body + "</div>" + "<div class='post_votes'>" + post.count + "</div>" + "<a href='#'  class='button tiny radius round vote-button' onclick='vote(" + post.id + ");'>Vote</a>";
-       marker.bindPopup(content);
+      makeMarker(post);
     });
   });
 }

@@ -16,20 +16,24 @@ feature "User visits the list path inside of root path, enters general-area post
   end
 
   it 'submits a valid post' do
-    visit '/posts/new'
-    count = Post.count
-    select 'News', from:' Category'
-    fill_in 'Address', with: '33 Harrison Avenue Boston, MA'
-    fill_in 'Body', with: "some post content."
-    click_button "Submit"
-    expect(page).to have_content 'Posts in Your Area'
-    expect(Post.count).to eql(count + 1)
+    within('.general_area_post') do
+      visit '/posts/new'
+      count = Post.count
+      select 'News', from:' Category'
+      fill_in 'Address', with: '33 Harrison Avenue Boston, MA'
+      fill_in 'Body', with: "some post content."
+      click_button "Submit"
+      expect(page).to have_content 'Posts in Your Area'
+      expect(Post.count).to eql(count + 1)
+    end
   end
 
   it 'submits an invalid post' do
-    visit '/posts/new'
-    click_button 'Submit'
-    expect(page).to have_content "Please review the problems below"
+    within('.general_area_post') do
+      visit '/posts/new'
+      click_button 'Submit'
+      expect(page).to have_content "Please review the problems below"
+    end
   end
 
   it 'User sees all posts' do
