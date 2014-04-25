@@ -2,7 +2,7 @@
   <div class='postlist'>
 
     <div class='post_user'>
-      <%= "#{post.user.first}:"  %>
+      <strong><%= "#{post.user.first}:"  %></strong>
     </div>
 
     <div class='post_category'>
@@ -31,12 +31,15 @@
 
     <div class='commenttoggle'>
 
-    <%= button_to 'Vote', "/posts/#{post.id}/votes", class: 'vote_button button radius tiny' %>
+    <%= button_to 'Vote', "/posts/#{post.id}/votes", class: 'vote_button button radius tiny alert' %>
 
     <% if post.comments.any? %>
       <p>Comments:</p>
         <% post.comments.each do |comment| %>
-          <%= "#{comment.user.first} " + "#{comment.user.last}" %><br>
+          <div class='commenter_color'>
+            <%= "#{comment.user.first} " + "#{comment.user.last}" %><br>
+          </div>
+
           <%= comment.body %><br><br>
         <% end
            end %>
@@ -44,6 +47,7 @@
         <%= render partial: '/comments/form', locals: {
           comment: post.comments.build
         } %>
+
     </div>
   </div>
   <hr>
