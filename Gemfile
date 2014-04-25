@@ -20,6 +20,9 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
 
+gem 'sinatra', require: false
+gem 'slim'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -60,8 +63,6 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'capybara'
   gem 'capybara-mechanize'
-  gem 'sinatra', require: false
-  gem 'slim'
 end
 
 # Use ActiveModel has_secure_password
