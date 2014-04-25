@@ -1,23 +1,34 @@
 <div class='postlist'>
 
-<div class='general_area_post'>
+  <div class='general_area_post'>
 
-  <h1>Write a General Area Post</h1>
+    <h1>Write a General Area Post</h1>
 
-  <%= render partial: 'new' %>
+    <%= render partial: 'new' %>
 
-</div>
+  </div>
 
-<hr>
+  <hr>
 
-<h1 class='posts_index'>Posts in Your Area:</h1>
+  <h1 class='posts_index'>Posts in Your Area:</h1>
 
-<%= form_tag posts_path, :method => 'get', :id => "posts_search" do %>
+  <%= form_tag posts_path, :method => 'get', :id => "posts_search" do %>
   <p>
     <%= text_field_tag :search, params[:search], placeholder: 'Search posts in your area' %>
     <%= submit_tag "Search", :name => nil, class: 'button tiny radius' %>
   </p>
-<% end %>
-  <div id="posts"><%= render 'posts' %></div>
+  <% end %>
+
+  <div class='pagination'>
+   <%= paginate @posts %>
+ </div>
+
+ <div id="posts">
+  <%= render 'posts' %>
+</div>
+
+<div class='pagination'>
+ <%= paginate @posts %>
+</div>
 
 </div>

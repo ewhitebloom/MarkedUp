@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'geocoder'
 gem 'thumbs_up'
 gem 'simple_form'
+gem 'kaminari'
 
 gem 'sidetiq', '~> 0.4.3'
 gem 'sidekiq', '~> 2.15.0'
