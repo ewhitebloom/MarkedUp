@@ -1,5 +1,5 @@
 <%= simple_form_for [comment.post, comment] do |f| %>
  <%= f.error_notification %>
-  <%= f.input :body, placeholder: 'Write a post..', as: :text, required: true %>
+  <%= f.input :body, placeholder: 'Write a comment..', as: :text, required: true %>
   <%= f.button :submit, 'Submit' %>
 <% end %>
