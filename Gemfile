@@ -62,7 +62,6 @@ group :test, :development do
   gem 'capybara-mechanize'
   gem 'sinatra', require: false
   gem 'slim'
-  gem 'resque'
 end
 
 # Use ActiveModel has_secure_password
