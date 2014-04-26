@@ -81,8 +81,8 @@ function vote(post_id){
   });
 };
 
-function retrievePost(post_id) {
-  $.getJSON('/posts/' + post_id + '.json', {}, function(data){
+function retrievePost(id) {
+  $.getJSON('/posts/' + id + '.json', {}, function(data){
     makeMarker(data);
   });
 };
