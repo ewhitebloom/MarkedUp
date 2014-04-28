@@ -16,8 +16,8 @@ feature "User visits the list path inside of root path, enters general-area post
   end
 
   it 'submits a valid post' do
-    within('.general_area_post') do
-      visit '/posts/new'
+      visit '/posts'
+    within(:css, '.general_area_post') do
       count = Post.count
       select 'News', from:' Category'
       fill_in 'Address', with: '33 Harrison Avenue Boston, MA'
@@ -29,8 +29,8 @@ feature "User visits the list path inside of root path, enters general-area post
   end
 
   it 'submits an invalid post' do
-    within('.general_area_post') do
-      visit '/posts/new'
+      visit '/posts'
+    within(:css, '.general_area_post') do
       click_button 'Submit'
       expect(page).to have_content "Please review the problems below"
     end
