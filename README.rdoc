@@ -1,28 +1,5 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+MarkedUp is a Ruby-on-Rails Web Application that aims to allow neighborhoods to voice news, neighborhood propositions, or otherwise content relevant to their neighborhood. The app uses the Leaflet Maps API to allow for an easy clickable interface for making location-based posts, with the option of making a more general-area post in the sidebar. All map HTTP requests are done through AJAX, including posting and voting. The app also utilizes Sidekiq and Sidetiq on the server-side to clean out Posts that haven't been voted on within twenty-four hours.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+-Eric Whitebloom
