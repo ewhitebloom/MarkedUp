@@ -1,5 +1,5 @@
 == README
 
-MarkedUp is a Ruby-on-Rails Web Application that aims to allow neighborhoods to voice news, neighborhood propositions, or otherwise content relevant to their neighborhood. The app uses the Leaflet Maps API to allow for an easy clickable interface for making location-based posts, with the option of making a more general-area post in the sidebar. All map HTTP requests are done through AJAX, including posting and voting. The app also utilizes Sidekiq and Sidetiq on the server-side to clean out Posts that haven't been voted on within twenty-four hours.
+MarkedUp is a Ruby-on-Rails Web Application that aims to allow neighborhoods to voice news, neighborhood propositions, or otherwise content relevant to their neighborhood. The app uses the Leaflet Maps API to allow for an easy clickable interface for making location-based posts, with the option of making a more general-area post in the sidebar. All map HTTP requests are done through AJAX, including posting and voting. The app also utilizes Sidekiq and Sidetiq on the server-side to clean out posts that haven't been voted on within twenty-four hours.
 
 -Eric Whitebloom
