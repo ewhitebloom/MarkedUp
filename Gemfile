@@ -39,7 +39,6 @@ gem 'kaminari'
 gem 'sidetiq', '~> 0.4.3'
 gem 'sidekiq', '~> 2.15.0'
 
-gem 'rails_12factor'
 
 ruby '2.0.0'
 
